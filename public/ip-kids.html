@@ -761,20 +761,12 @@ Respond with ONLY valid JSON. No markdown, no backticks, no preamble.
   const userPrompt=`Child's name: ${name}\nAge: ${age}\nInterests: ${interests}\n\nGenerate their IP Kids discovery. Inspirations must be genuinely globally diverse.`;
 
   try{
-    const resp=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:2000,
-        system:systemPrompt,
-        messages:[{role:'user',content:userPrompt}]
-      })
-    });
-    const data=await resp.json();
-    const raw=data.content.map(b=>b.text||'').join('');
-    const clean=raw.replace(/```json|```/g,'').trim();
-    const result=JSON.parse(clean);
+    const resp = await fetch('/api/generate-discovery', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ name, age, interests })
+});
+const result = await resp.json();
     stopLoading();
     document.getElementById('loadingSection').classList.remove('active');
     gName=name; gAge=age;
