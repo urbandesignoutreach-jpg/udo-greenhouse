@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IP Kids — Discover Your Superpower</title>
+<meta name="description" content="IP Kids helps young people discover the superpower hiding inside their interests. Personalized AI-powered discovery reports for ages 5–17.">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Rokkitt:wght@400;600&family=Jura:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --navy:#001984; --green:#008500; --orange:#ffa626; --brown:#824930;
+  --navy-light:#e6eaff; --green-light:#e6f4e6; --orange-light:#fff4e0;
+  --white:#fff; --off-white:#fafaf8; --text-dark:#1a1a1a; --text-mid:#555;
+  --radius-sm:8px; --radius-md:12px; --radius-lg:16px;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Rokkitt',serif;background:var(--off-white);color:var(--text-dark);min-height:100vh;}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+.hero{
+  background:var(--navy);padding:4rem 2rem 3.5rem;
+  text-align:center;position:relative;overflow:hidden;
+}
+.hero::before{content:'';position:absolute;top:-80px;right:-80px;width:300px;height:300px;border-radius:50%;background:var(--orange);opacity:.1;}
+.hero::after{content:'';position:absolute;bottom:-60px;left:-60px;width:220px;height:220px;border-radius:50%;background:var(--green);opacity:.12;}
+.hero-eyebrow{font-family:'Jura',monospace;font-size:.8rem;letter-spacing:.2em;color:var(--orange);text-transform:uppercase;margin-bottom:.6rem;}
+.hero h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,12vw,7rem);color:#fff;letter-spacing:.04em;line-height:.95;}
+.hero h1 span{color:var(--orange);}
+.hero-sub{font-family:'Oswald',sans-serif;font-size:clamp(1rem,3vw,1.3rem);color:rgba(255,255,255,.75);margin-top:1rem;font-weight:400;letter-spacing:.03em;max-width:560px;margin-left:auto;margin-right:auto;}
+.hero-tagline{font-family:'Rokkitt',serif;font-size:1rem;color:var(--green);margin-top:1rem;font-style:italic;}
+.hero-cta{margin-top:2rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
+/* ═══════════════════════════════════════════
+   CONTAINER
+═══════════════════════════════════════════ */
+.container{max-width:760px;margin:0 auto;padding:3rem 1.5rem 5rem;}
+
+/* ═══════════════════════════════════════════
+   LANDING PAGE SECTIONS
+═══════════════════════════════════════════ */
+#landingPage{}
+
+/* What is IP Kids */
+.section-intro{text-align:center;padding:3rem 0 2rem;}
+.section-eyebrow{font-family:'Jura',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;}
+.section-heading{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,6vw,3.2rem);color:var(--navy);letter-spacing:.04em;line-height:1.05;margin-bottom:1rem;}
+.section-body-text{font-family:'Rokkitt',serif;font-size:1.1rem;line-height:1.75;color:var(--text-mid);max-width:580px;margin:0 auto;}
+
+/* HOW IT WORKS */
+.steps-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.25rem;margin:2.5rem 0;}
+.step-card{background:#fff;border-radius:var(--radius-lg);padding:1.75rem 1.5rem;border-top:4px solid var(--navy);text-align:center;}
+.step-card.s2{border-top-color:var(--green);}
+.step-card.s3{border-top-color:var(--orange);}
+.step-card.s4{border-top-color:var(--brown);}
+.step-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--navy);line-height:1;margin-bottom:.5rem;}
+.step-card.s2 .step-num{color:var(--green);}
+.step-card.s3 .step-num{color:var(--orange);}
+.step-card.s4 .step-num{color:var(--brown);}
+.step-label{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--text-dark);margin-bottom:.5rem;letter-spacing:.02em;}
+.step-desc{font-family:'Rokkitt',serif;font-size:.92rem;color:var(--text-mid);line-height:1.6;}
+
+/* WHAT YOU GET */
+.deliverables{background:#fff;border-radius:var(--radius-lg);padding:2.5rem 2rem;margin:2rem 0;position:relative;overflow:hidden;}
+.deliverables::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy),var(--green),var(--orange),var(--brown));}
+.deliverables-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-top:1.75rem;}
+.deliverable-item{display:flex;gap:.85rem;align-items:flex-start;}
+.deliverable-icon{width:36px;height:36px;border-radius:50%;background:var(--navy-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem;}
+.deliverable-text strong{display:block;font-family:'Oswald',sans-serif;font-size:.95rem;font-weight:600;color:var(--navy);letter-spacing:.02em;}
+.deliverable-text span{font-family:'Rokkitt',serif;font-size:.88rem;color:var(--text-mid);line-height:1.5;}
+
+/* SOCIAL PROOF */
+.proof-band{background:var(--navy);border-radius:var(--radius-lg);padding:2.5rem 2rem;margin:2rem 0;text-align:center;}
+.proof-stats{display:flex;flex-wrap:wrap;justify-content:center;gap:2rem;margin-top:1.5rem;}
+.proof-stat-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:var(--orange);letter-spacing:.04em;line-height:1;}
+.proof-stat-label{font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:.2rem;}
+
+/* PRICING CARD */
+.pricing-section{margin:2rem 0;}
+.pricing-card{background:#fff;border-radius:var(--radius-lg);padding:2.5rem 2rem;text-align:center;border:3px solid var(--orange);position:relative;overflow:hidden;}
+.pricing-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--orange),var(--navy));}
+.pricing-badge{display:inline-block;font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;background:var(--orange-light);color:var(--brown);padding:4px 14px;border-radius:20px;margin-bottom:1rem;}
+.pricing-name{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--navy);letter-spacing:.05em;}
+.pricing-price{font-family:'Bebas Neue',sans-serif;font-size:4.5rem;color:var(--navy);letter-spacing:.02em;line-height:1;margin:.5rem 0;}
+.pricing-price sup{font-size:2rem;vertical-align:super;}
+.pricing-period{font-family:'Jura',monospace;font-size:.78rem;letter-spacing:.12em;color:var(--text-mid);text-transform:uppercase;margin-bottom:1.75rem;}
+.pricing-features{list-style:none;text-align:left;margin:0 0 2rem;display:inline-block;}
+.pricing-features li{font-family:'Rokkitt',serif;font-size:1rem;padding:.45rem 0 .45rem 1.6rem;position:relative;color:var(--text-dark);border-bottom:1px solid #f0f0f0;}
+.pricing-features li:last-child{border-bottom:none;}
+.pricing-features li::before{content:'✦';position:absolute;left:0;color:var(--orange);font-size:.75rem;top:.55rem;}
+.pricing-note{font-family:'Jura',monospace;font-size:.75rem;color:#999;letter-spacing:.08em;margin-top:1rem;}
+
+/* ORG TEASER */
+.org-card{background:var(--navy-light);border-radius:var(--radius-lg);padding:2rem;margin:2rem 0;display:flex;gap:1.5rem;align-items:flex-start;}
+.org-icon{font-size:2rem;flex-shrink:0;}
+.org-heading{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:var(--navy);margin-bottom:.4rem;}
+.org-desc{font-family:'Rokkitt',serif;font-size:.95rem;color:var(--text-mid);line-height:1.6;}
+.org-link{display:inline-block;margin-top:.75rem;font-family:'Jura',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--navy);text-decoration:none;border-bottom:1px solid var(--navy);}
+
+/* ═══════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════ */
+.btn-primary{display:inline-block;padding:1rem 2.5rem;background:var(--orange);color:var(--navy);border:none;border-radius:var(--radius-md);font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;cursor:pointer;transition:background .2s,transform .1s;text-decoration:none;}
+.btn-primary:hover{background:#e8941f;}
+.btn-primary:active{transform:scale(.98);}
+.btn-secondary{display:inline-block;padding:.9rem 2rem;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.5);border-radius:var(--radius-md);font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:.08em;cursor:pointer;transition:all .2s;text-decoration:none;}
+.btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.1);}
+.btn-form{width:100%;padding:1rem 2rem;background:var(--navy);color:#fff;border:none;border-radius:var(--radius-md);font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:.1em;cursor:pointer;transition:background .2s,transform .1s;margin-top:.5rem;}
+.btn-form:hover{background:#002ab5;}
+.btn-form:active{transform:scale(.98);}
+.btn-form:disabled{background:#a0a8cc;cursor:not-allowed;}
+.btn-action{display:inline-flex;align-items:center;justify-content:center;gap:.45rem;padding:.7rem 1.25rem;border-radius:var(--radius-sm);font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:.06em;cursor:pointer;transition:all .18s;border:2px solid transparent;white-space:nowrap;}
+.btn-green{background:transparent;border-color:var(--green);color:var(--green);}
+.btn-green:hover{background:var(--green);color:#fff;}
+.btn-orange-outline{background:transparent;border-color:var(--orange);color:var(--brown);}
+.btn-orange-outline:hover{background:var(--orange);color:#fff;}
+.btn-ghost{background:transparent;border-color:var(--navy);color:var(--navy);}
+.btn-ghost:hover{background:var(--navy);color:#fff;}
+
+/* ═══════════════════════════════════════════
+   PANEL (shared card wrapper)
+═══════════════════════════════════════════ */
+.panel{background:#fff;border-radius:var(--radius-lg);padding:2.5rem 2rem;border:2px solid var(--navy-light);position:relative;}
+.panel::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--navy),var(--green),var(--orange));border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
+.panel-title{font-family:'Bebas Neue',sans-serif;font-size:2rem;color:var(--navy);letter-spacing:.05em;margin-bottom:.5rem;}
+.panel-sub{font-family:'Rokkitt',serif;font-size:1.05rem;color:var(--text-mid);line-height:1.65;margin-bottom:1.75rem;}
+.panel-sub strong{color:var(--navy);}
+
+/* ═══════════════════════════════════════════
+   CONSENT
+═══════════════════════════════════════════ */
+.consent-notice{background:var(--navy-light);border-radius:10px;padding:1.25rem 1.5rem;margin-bottom:1.5rem;border-left:4px solid var(--navy);}
+.consent-notice p{font-family:'Rokkitt',serif;font-size:.95rem;line-height:1.65;color:#2a2f6a;}
+.consent-notice p+p{margin-top:.75rem;}
+.consent-notice strong{color:var(--navy);}
+.checkbox-row{display:flex;align-items:flex-start;gap:.85rem;padding:1rem;border-radius:10px;border:1.5px solid #d0d6f0;background:var(--off-white);margin-bottom:.85rem;cursor:pointer;transition:border-color .2s;}
+.checkbox-row:hover{border-color:var(--navy);}
+.checkbox-row input[type=checkbox]{width:20px;height:20px;margin-top:2px;flex-shrink:0;accent-color:var(--navy);cursor:pointer;}
+.checkbox-label{font-family:'Rokkitt',serif;font-size:.97rem;line-height:1.6;color:var(--text-dark);}
+.checkbox-label strong{color:var(--navy);}
+
+/* ═══════════════════════════════════════════
+   FORM FIELDS
+═══════════════════════════════════════════ */
+.field-group{margin-bottom:1.5rem;}
+.field-group label{display:block;font-family:'Oswald',sans-serif;font-size:.85rem;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);margin-bottom:.5rem;font-weight:600;}
+.field-group label span{color:var(--orange);margin-left:2px;}
+input[type=text],input[type=number],textarea{width:100%;padding:.85rem 1rem;border:1.5px solid #d0d6f0;border-radius:10px;font-family:'Rokkitt',serif;font-size:1rem;color:var(--text-dark);background:var(--off-white);outline:none;transition:border-color .2s,background .2s;}
+input[type=text]:focus,input[type=number]:focus,textarea:focus{border-color:var(--navy);background:#fff;}
+textarea{resize:vertical;min-height:120px;line-height:1.6;}
+.field-hint{font-family:'Jura',monospace;font-size:.78rem;color:#888;margin-top:.4rem;}
+.row-two{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;}
+
+/* ═══════════════════════════════════════════
+   LOADING
+═══════════════════════════════════════════ */
+.loading{display:none;text-align:center;padding:3rem 1rem;}
+.loading.active{display:block;}
+.loading-ring{width:56px;height:56px;border:4px solid var(--navy-light);border-top-color:var(--navy);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 1.5rem;}
+@keyframes spin{to{transform:rotate(360deg);}}
+.loading-text{font-family:'Oswald',sans-serif;font-size:1.1rem;color:var(--navy);letter-spacing:.05em;}
+.loading-sub{font-family:'Jura',monospace;font-size:.82rem;color:#888;margin-top:.4rem;}
+
+/* ═══════════════════════════════════════════
+   RESULT
+═══════════════════════════════════════════ */
+.result{display:none;}
+.result.active{display:block;}
+
+.result-header{background:var(--navy);border-radius:14px;padding:2rem 1.75rem;margin-bottom:1.75rem;text-align:center;position:relative;overflow:hidden;}
+.result-header::before{content:'';position:absolute;top:-50px;right:-50px;width:180px;height:180px;border-radius:50%;background:var(--orange);opacity:.13;}
+.result-header::after{content:'';position:absolute;bottom:-40px;left:-40px;width:140px;height:140px;border-radius:50%;background:var(--green);opacity:.15;}
+.result-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,6vw,3.5rem);color:#fff;letter-spacing:.05em;position:relative;z-index:1;}
+.result-name span{color:var(--orange);}
+.result-subtitle{font-family:'Oswald',sans-serif;font-size:.95rem;color:rgba(255,255,255,.65);letter-spacing:.1em;text-transform:uppercase;margin-top:.3rem;position:relative;z-index:1;}
+
+.superpower-card{background:var(--navy);border-radius:14px;padding:2rem 1.75rem;margin-bottom:1.5rem;position:relative;overflow:hidden;text-align:center;}
+.superpower-card::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;border-radius:50%;background:var(--orange);opacity:.18;}
+.superpower-card::after{content:'';position:absolute;bottom:-30px;left:-30px;width:110px;height:110px;border-radius:50%;background:var(--green);opacity:.18;}
+.sp-eyebrow{font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);margin-bottom:.5rem;position:relative;z-index:1;}
+.sp-icon{font-size:2.8rem;margin-bottom:.6rem;position:relative;z-index:1;display:block;line-height:1;}
+.sp-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(1.8rem,5vw,2.8rem);color:#fff;letter-spacing:.06em;line-height:1.05;margin-bottom:.5rem;position:relative;z-index:1;}
+.sp-desc{font-family:'Rokkitt',serif;font-size:1rem;color:rgba(255,255,255,.88);line-height:1.65;position:relative;z-index:1;max-width:500px;margin:0 auto;}
+
+.section-card{background:#fff;border-radius:14px;padding:1.75rem;margin-bottom:1.5rem;border-left:5px solid var(--navy);}
+.section-card.green{border-left-color:var(--green);}
+.section-card.brown{border-left-color:var(--brown);}
+.section-card.navy-bg{background:var(--navy);border:none;}
+.section-label{font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:.3rem;}
+.section-card.green .section-label{color:var(--green);}
+.section-card.brown .section-label{color:var(--brown);}
+.section-card.navy-bg .section-label{color:var(--orange);}
+.section-title{font-family:'Oswald',sans-serif;font-size:1.35rem;font-weight:600;color:var(--navy);margin-bottom:1rem;letter-spacing:.02em;}
+.section-card.navy-bg .section-title{color:#fff;}
+.section-body{font-family:'Rokkitt',serif;font-size:1.05rem;line-height:1.75;color:var(--text-dark);}
+.section-card.navy-bg .section-body{color:rgba(255,255,255,.88);}
+.section-body ul{list-style:none;padding:0;margin:0;}
+.section-body ul li{padding:.4rem 0 .4rem 1.5rem;position:relative;border-bottom:1px solid #f0f0f0;}
+.section-card.navy-bg .section-body ul li{border-bottom-color:rgba(255,255,255,.1);}
+.section-body ul li:last-child{border-bottom:none;}
+.section-body ul li::before{content:'▸';position:absolute;left:0;color:var(--orange);font-size:.9rem;}
+
+.timeline-grid{display:grid;grid-template-columns:1fr;gap:1.25rem;}
+.timeline-item{background:#fff;border-radius:14px;padding:1.5rem 1.75rem;border-top:4px solid var(--green);}
+.timeline-item.two{border-top-color:var(--orange);}
+.timeline-item.three{border-top-color:var(--navy);}
+.tl-badge{display:inline-block;font-family:'Jura',monospace;font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;padding:3px 10px;border-radius:20px;background:var(--green-light);color:var(--green);margin-bottom:.6rem;}
+.timeline-item.two .tl-badge{background:var(--orange-light);color:var(--brown);}
+.timeline-item.three .tl-badge{background:var(--navy-light);color:var(--navy);}
+.tl-title{font-family:'Oswald',sans-serif;font-size:1.15rem;font-weight:600;color:var(--text-dark);margin-bottom:.75rem;}
+
+.inspo-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-top:.5rem;}
+.inspo-card{background:var(--navy-light);border-radius:12px;padding:1.25rem 1rem;text-align:center;}
+.inspo-init{width:52px;height:52px;border-radius:50%;background:var(--navy);color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;display:flex;align-items:center;justify-content:center;margin:0 auto .75rem;letter-spacing:.04em;}
+.inspo-name{font-family:'Oswald',sans-serif;font-size:1rem;font-weight:600;color:var(--navy);}
+.inspo-role{font-family:'Jura',monospace;font-size:.78rem;color:var(--text-mid);margin-top:.25rem;line-height:1.4;}
+.inspo-why{font-family:'Rokkitt',serif;font-size:.88rem;color:#333;margin-top:.5rem;font-style:italic;line-height:1.5;}
+
+/* ACTION BAR */
+.action-bar{background:var(--navy-light);border-radius:12px;padding:1.25rem 1.5rem;margin:2rem 0 0;}
+.action-bar-label{font-family:'Jura',monospace;font-size:.73rem;letter-spacing:.18em;text-transform:uppercase;color:var(--navy);margin-bottom:.85rem;}
+.action-btns{display:flex;flex-wrap:wrap;gap:.75rem;}
+
+/* ERROR */
+.error-msg{display:none;background:#fff0f0;border:1px solid #f5c0c0;border-radius:10px;padding:1rem 1.25rem;color:#c0392b;font-family:'Rokkitt',serif;margin-top:1rem;font-size:.95rem;}
+.error-msg.active{display:block;}
+
+/* TOAST */
+.toast{position:fixed;bottom:2rem;left:50%;transform:translateX(-50%) translateY(80px);background:var(--navy);color:#fff;padding:.85rem 1.75rem;border-radius:40px;font-family:'Oswald',sans-serif;font-size:1rem;letter-spacing:.06em;transition:transform .35s ease;z-index:9999;white-space:nowrap;pointer-events:none;}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* SHARE MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,20,.7);z-index:10000;align-items:center;justify-content:center;padding:1rem;}
+.modal-overlay.active{display:flex;}
+.modal-box{background:#fff;border-radius:var(--radius-lg);padding:2rem;max-width:480px;width:100%;position:relative;}
+.modal-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--navy);letter-spacing:.05em;margin-bottom:.25rem;}
+.modal-sub{font-family:'Rokkitt',serif;font-size:.95rem;color:var(--text-mid);margin-bottom:1.25rem;line-height:1.5;}
+.share-text-box{width:100%;padding:.85rem 1rem;border:1.5px solid #d0d6f0;border-radius:10px;font-family:'Rokkitt',serif;font-size:.9rem;color:var(--text-dark);background:var(--off-white);resize:none;height:160px;outline:none;line-height:1.55;}
+.modal-actions{display:flex;gap:.75rem;margin-top:1rem;flex-wrap:wrap;}
+.modal-close{position:absolute;top:1rem;right:1rem;background:none;border:none;font-size:1.4rem;cursor:pointer;color:#888;line-height:1;}
+.modal-close:hover{color:var(--navy);}
+
+/* PAYMENT GATE */
+.payment-gate{background:#fff;border-radius:var(--radius-lg);padding:2.5rem 2rem;border:3px solid var(--orange);text-align:center;position:relative;overflow:hidden;}
+.payment-gate::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;background:linear-gradient(90deg,var(--orange),var(--navy));}
+.gate-icon{font-size:3rem;margin-bottom:.75rem;display:block;}
+.gate-title{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:var(--navy);letter-spacing:.05em;margin-bottom:.4rem;}
+.gate-sub{font-family:'Rokkitt',serif;font-size:1.05rem;color:var(--text-mid);line-height:1.65;margin-bottom:1.5rem;}
+.gate-price-display{margin:1.25rem 0 1.75rem;}
+.gate-price-amount{font-family:'Bebas Neue',sans-serif;font-size:4rem;color:var(--navy);letter-spacing:.02em;line-height:1;}
+.gate-price-amount sup{font-size:2rem;vertical-align:super;}
+.gate-price-desc{font-family:'Jura',monospace;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text-mid);margin-top:.25rem;}
+.gate-includes{list-style:none;text-align:left;display:inline-block;margin:0 0 1.75rem;padding:0;}
+.gate-includes li{font-family:'Rokkitt',serif;font-size:.97rem;padding:.4rem 0 .4rem 1.6rem;position:relative;color:var(--text-dark);border-bottom:1px solid #f0f0f0;}
+.gate-includes li:last-child{border-bottom:none;}
+.gate-includes li::before{content:'✦';position:absolute;left:0;color:var(--orange);font-size:.75rem;top:.55rem;}
+.gate-secure{font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.1em;color:#999;margin-top:.85rem;}
+.gate-secure a{color:var(--navy);}
+
+/* BETA CODE ENTRY */
+.beta-divider{display:flex;align-items:center;gap:1rem;margin:1.75rem 0;}
+.beta-divider::before,.beta-divider::after{content:'';flex:1;height:1px;background:#e0e0e0;}
+.beta-divider span{font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:#aaa;white-space:nowrap;}
+.beta-row{display:flex;gap:.75rem;}
+.beta-input{flex:1;padding:.75rem 1rem;border:1.5px solid #d0d6f0;border-radius:10px;font-family:'Rokkitt',serif;font-size:1rem;color:var(--text-dark);background:var(--off-white);outline:none;}
+.beta-input:focus{border-color:var(--navy);background:#fff;}
+.beta-btn{padding:.75rem 1.25rem;background:transparent;border:2px solid var(--navy);border-radius:10px;font-family:'Oswald',sans-serif;font-size:.9rem;letter-spacing:.06em;color:var(--navy);cursor:pointer;transition:all .18s;white-space:nowrap;}
+.beta-btn:hover{background:var(--navy);color:#fff;}
+
+/* FOOTER */
+.footer{text-align:center;padding:1.5rem;background:var(--navy);color:rgba(255,255,255,.45);font-family:'Jura',monospace;font-size:.78rem;letter-spacing:.1em;}
+.footer a{color:var(--orange);text-decoration:none;}
+
+/* PRINT */
+@media print{
+  body{background:#fff!important;}
+  #landingPage,#consentSection,#formSection,#loadingSection,
+  .hero,#paymentGate,.action-bar,.restart-wrap,.footer,.toast,.modal-overlay{display:none!important;}
+  .result{display:block!important;}
+  .container{padding:.5rem!important;max-width:100%!important;}
+  .section-card,.timeline-item,.inspo-card,.superpower-card{break-inside:avoid;page-break-inside:avoid;}
+}
+@media(max-width:520px){
+  .row-two{grid-template-columns:1fr;}
+  .panel,.payment-gate,.deliverables{padding:1.75rem 1.25rem;}
+  .hero{padding:2.5rem 1.25rem 2rem;}
+  .action-btns,.modal-actions,.beta-row{flex-direction:column;}
+  .btn-action,.beta-btn{width:100%;}
+  .hero-cta{flex-direction:column;align-items:center;}
+  .steps-grid{grid-template-columns:1fr;}
+  .proof-stats{gap:1.25rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<div class="hero" id="heroSection">
+  <p class="hero-eyebrow">Urban Design Outreach Presents</p>
+  <h1>IP <span>KIDS</span></h1>
+  <p class="hero-sub">Every child walks in with a superpower. We help them find it.</p>
+  <p class="hero-tagline">"You are your greatest asset."</p>
+  <div class="hero-cta">
+    <a href="#pricing" class="btn-primary">Unlock My Discovery — $4.99</a>
+    <a href="#how-it-works" class="btn-secondary">See How It Works</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     LANDING PAGE
+════════════════════════════════════════ -->
+<div id="landingPage">
+<div class="container">
+
+  <!-- INTRO -->
+  <div class="section-intro">
+    <p class="section-eyebrow">What Is IP Kids?</p>
+    <h2 class="section-heading">Intellectual Property Kids</h2>
+    <p class="section-body-text">IP Kids is a personalized discovery experience for young people ages 5–17. Every child enters with their interests and walks away knowing their superpower, their pathway, and the real-world people who share their gifts. We don't tell kids what to be. We show them what they already are.</p>
+  </div>
+
+  <!-- HOW IT WORKS -->
+  <div id="how-it-works">
+    <p class="section-eyebrow" style="text-align:center;font-family:'Jura',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);">How It Works</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-label">Share Your Interests</div>
+        <p class="step-desc">Your child lists up to 5 things they love — the more specific, the better.</p>
+      </div>
+      <div class="step-card s2">
+        <div class="step-num">02</div>
+        <div class="step-label">Superpower Identified</div>
+        <p class="step-desc">The IP Academy names their unique superpower — a signature that captures who they are.</p>
+      </div>
+      <div class="step-card s3">
+        <div class="step-num">03</div>
+        <div class="step-label">See Their Pathway</div>
+        <p class="step-desc">A personalized roadmap: things to do now, in 2 years, in 5 years, and as a young adult.</p>
+      </div>
+      <div class="step-card s4">
+        <div class="step-num">04</div>
+        <div class="step-label">Meet Their People</div>
+        <p class="step-desc">Three real, globally diverse trailblazers who share their exact combination of gifts.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT YOU GET -->
+  <div class="deliverables">
+    <p class="section-eyebrow" style="font-family:'Jura',monospace;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--orange);">What's Included</p>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:var(--navy);letter-spacing:.04em;margin-top:.3rem;">Your Child's Full Discovery Report</h3>
+    <div class="deliverables-grid">
+      <div class="deliverable-item">
+        <div class="deliverable-icon">⚡</div>
+        <div class="deliverable-text"><strong>Superpower Name + Origin Story</strong><span>An iconic, personalized power identity unique to their interests</span></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">🎯</div>
+        <div class="deliverable-text"><strong>Gift Range Celebration</strong><span>A paragraph written directly to your child about what makes their combination rare</span></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">🗓</div>
+        <div class="deliverable-text"><strong>Right Now Actions</strong><span>5–7 specific things they can do this week with their interests</span></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">🌱</div>
+        <div class="deliverable-text"><strong>2-Year + 5-Year Roadmap</strong><span>Clubs, skills, programs, and milestones tailored to their path</span></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">🚀</div>
+        <div class="deliverable-text"><strong>Young Adult Career Vision</strong><span>Real career paths and entrepreneurial directions their interests unlock</span></div>
+      </div>
+      <div class="deliverable-item">
+        <div class="deliverable-icon">🌍</div>
+        <div class="deliverable-text"><strong>Hall of Inspiration</strong><span>3 globally diverse, real-world figures who share their gifts</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="proof-band">
+    <p style="font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;letter-spacing:.05em;">The UDO Village Behind This Tool</p>
+    <div class="proof-stats">
+      <div><div class="proof-stat-num">45+</div><div class="proof-stat-label">Activations Produced</div></div>
+      <div><div class="proof-stat-num">100+</div><div class="proof-stat-label">Businesses Served</div></div>
+      <div><div class="proof-stat-num">200+</div><div class="proof-stat-label">People Per Activation</div></div>
+      <div><div class="proof-stat-num">5</div><div class="proof-stat-label">Years of Give Sanctuary</div></div>
+    </div>
+  </div>
+
+  <!-- PRICING -->
+  <div class="pricing-section" id="pricing">
+    <div class="pricing-card">
+      <div class="pricing-badge">One Report · One Child · One Discovery</div>
+      <div class="pricing-name">IP Kids Discovery Report</div>
+      <div class="pricing-price"><sup>$</sup>4.99</div>
+      <p class="pricing-period">One-time · Instant access · Downloadable PDF</p>
+      <ul class="pricing-features">
+        <li>Personalized superpower name &amp; origin story</li>
+        <li>Full gift range celebration written to your child</li>
+        <li>Right now actions + 2-year + 5-year roadmap</li>
+        <li>Young adult career vision</li>
+        <li>3 globally diverse real-world inspirations</li>
+        <li>Downloadable &amp; shareable PDF report</li>
+        <li>Parent consent + privacy protection built in</li>
+      </ul>
+      <button class="btn-primary" onclick="scrollToGate()" style="font-size:1.3rem;padding:.9rem 2.5rem;">Start Your Child's Discovery ▸</button>
+      <p class="pricing-note">Secured by Stripe · No account required · Results in under 60 seconds</p>
+    </div>
+  </div>
+
+  <!-- ORG LICENSING TEASER -->
+  <div class="org-card">
+    <div class="org-icon">🏫</div>
+    <div>
+      <div class="org-heading">Schools, Programs &amp; Organizations</div>
+      <p class="org-desc">Licensing IP Kids for your youth program, school, or after-school organization? Community and institutional licenses are available starting at $99/month for unlimited use. White-label branding available.</p>
+      <a href="mailto:grow@urbandesignoutreach.com?subject=IP Kids Licensing Inquiry" class="org-link">Contact us about licensing →</a>
+    </div>
+  </div>
+
+</div><!-- /container -->
+</div><!-- /landingPage -->
+
+<!-- ═══════════════════════════════════════
+     PAYMENT GATE + TOOL (hidden until paid)
+════════════════════════════════════════ -->
+<div class="container" id="toolContainer" style="display:none;">
+
+  <!-- PAYMENT GATE -->
+  <div id="paymentGate" class="payment-gate">
+    <span class="gate-icon">⚡</span>
+    <div class="gate-title">Unlock Your Discovery</div>
+    <p class="gate-sub">One payment. One child. One personalized IP Kids discovery report — instantly generated, downloadable, and yours to keep.</p>
+    <div class="gate-price-display">
+      <div class="gate-price-amount"><sup>$</sup>4.99</div>
+      <p class="gate-price-desc">One-time · No subscription · No account needed</p>
+    </div>
+    <ul class="gate-includes">
+      <li>Superpower name + origin story</li>
+      <li>Personalized gift range celebration</li>
+      <li>Right now actions + full roadmap to adulthood</li>
+      <li>3 globally diverse real-world inspirations</li>
+      <li>Downloadable PDF report</li>
+    </ul>
+
+    <!-- ─────────────────────────────────────────────────
+         STRIPE CHECKOUT BUTTON
+         ─────────────────────────────────────────────────
+         TO DEPLOY: Replace the onclick handler below with
+         a call to your Vercel serverless function:
+           onclick="startCheckout()"
+         See api/create-checkout-session.js for the function.
+         The startCheckout() function is defined in the script
+         below and calls POST /api/create-checkout-session,
+         then redirects to the Stripe hosted payment page.
+    ───────────────────────────────────────────────── -->
+    <button class="btn-primary" id="stripeBtn" onclick="startCheckout()" style="font-size:1.3rem;padding:.9rem 2.5rem;display:block;width:100%;">
+      Pay $4.99 &amp; Unlock Now ▸
+    </button>
+
+    <p class="gate-secure">🔒 Payments secured by <a href="https://stripe.com" target="_blank">Stripe</a>. Your card info never touches this server.</p>
+
+    <!-- BETA / COMP CODE ENTRY -->
+    <div class="beta-divider"><span>Or enter a Founding Growers access code</span></div>
+    <div class="beta-row">
+      <input type="text" class="beta-input" id="betaCodeInput" placeholder="FOUNDING-XXXX" maxlength="20" style="text-transform:uppercase;">
+      <button class="beta-btn" onclick="redeemBetaCode()">Redeem</button>
+    </div>
+    <div class="error-msg" id="gateError"></div>
+  </div>
+
+  <!-- CONSENT (shown after payment/code unlock) -->
+  <div class="panel" id="consentSection" style="display:none;">
+    <div class="panel-title">A Note for Parents &amp; Guardians</div>
+    <p class="panel-sub">IP Kids is for young people ages 5–17. <strong>Please read and agree</strong> before your child begins.</p>
+    <div class="consent-notice">
+      <p><strong>What this tool does:</strong> IP Kids asks for your child's first name, age, and personal interests to generate an encouraging, personalized discovery report.</p>
+      <p><strong>Privacy:</strong> Only a first name and interests are used for this session. No data is stored, sold, or shared with any third party.</p>
+      <p><strong>AI-generated content:</strong> This report is created by an AI and is intended to be inspiring and age-appropriate. We encourage parents to review results together with their child.</p>
+    </div>
+    <div style="margin-bottom:1.5rem;">
+      <label class="checkbox-row">
+        <input type="checkbox" id="check1" onchange="checkConsent()">
+        <span class="checkbox-label">I am the <strong>parent or legal guardian</strong> of the child using this tool, and I consent to their first name, age, and interests being processed to generate a discovery report.</span>
+      </label>
+      <label class="checkbox-row">
+        <input type="checkbox" id="check2" onchange="checkConsent()">
+        <span class="checkbox-label">I understand this tool is <strong>AI-powered</strong>, results are exploratory and inspirational, and I will review results with my child.</span>
+      </label>
+    </div>
+    <button class="btn-form" id="consentBtn" onclick="proceedToForm()" disabled>I Agree — Let's Discover ▸</button>
+  </div>
+
+  <!-- KID FORM -->
+  <div class="panel" id="formSection" style="display:none;">
+    <p class="panel-sub" style="text-align:center;margin-bottom:2rem;"><strong>Every interest is a seed.</strong> Tell us what you love, and we'll show you all the incredible places it can grow.</p>
+    <div class="row-two">
+      <div class="field-group">
+        <label>Your First Name <span>*</span></label>
+        <input type="text" id="kidName" placeholder="e.g. Jordan" maxlength="40">
+      </div>
+      <div class="field-group">
+        <label>Your Age <span>*</span></label>
+        <input type="number" id="kidAge" placeholder="e.g. 12" min="5" max="17">
+      </div>
+    </div>
+    <div class="field-group">
+      <label>What Are You Into? <span>*</span></label>
+      <textarea id="kidInterests" placeholder="List your top five interests. For example: drawing comics, playing soccer, building robots, cooking, writing stories..."></textarea>
+      <p class="field-hint">✦ List up to 5 things — the more specific, the better!</p>
+    </div>
+    <button class="btn-form" id="submitBtn" onclick="submitForm()">Discover My Possibilities ▸</button>
+    <div class="error-msg" id="errorMsg"></div>
+  </div>
+
+  <!-- LOADING -->
+  <div class="loading" id="loadingSection">
+    <div class="loading-ring"></div>
+    <p class="loading-text" id="loadingText">ACTIVATING YOUR GIFTS...</p>
+    <p class="loading-sub" id="loadingSub">Scanning for superpowers...</p>
+  </div>
+
+  <!-- RESULT -->
+  <div class="result" id="resultSection"></div>
+
+</div><!-- /toolContainer -->
+
+<div class="footer">
+  <p>A <a href="https://urbandesignoutreach.com" target="_blank">Urban Design Outreach</a> Activation &nbsp;·&nbsp; grow@urbandesignoutreach.com &nbsp;·&nbsp; "We animate the spaces between people."</p>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- SHARE MODAL -->
+<div class="modal-overlay" id="shareModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeShareModal()">✕</button>
+    <div class="modal-title">Share Your Discovery</div>
+    <p class="modal-sub">Copy the text below and paste it anywhere — Instagram, a text, email, or group chat.</p>
+    <textarea class="share-text-box" id="shareTextBox" readonly></textarea>
+    <div class="modal-actions">
+      <button class="btn-action btn-ghost" style="flex:1;" onclick="copyShareText()">Copy Text</button>
+      <button class="btn-action" style="border:2px solid #ddd;color:#888;" onclick="closeShareModal()">Close</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════
+   GLOBALS
+═══════════════════════════════════════════ */
+let gName='', gAge='', gSuperpower='', gCelebration='', gPowers=[], gResultData=null;
+
+/* ─────────────────────────────────────────
+   BETA ACCESS CODES
+   Add codes here for Founding Growers.
+   Format: 'CODE': true
+   To generate codes for organizations, add
+   them to this object before deploying.
+───────────────────────────────────────── */
+const BETA_CODES = {
+  'FOUNDING-UDO1': true,
+  'FOUNDING-UDO2': true,
+  'FOUNDING-UDO3': true,
+  'FOUNDING-UDO4': true,
+  'FOUNDING-UDO5': true,
+  'FOUNDING-UDO6': true,
+  'FOUNDING-UDO7': true,
+  'FOUNDING-UDO8': true,
+  'FOUNDING-UDO9': true,
+  'FOUNDING-UDO10': true,
+  'IFL-APRIL2026': true,
+  // Add more as needed — e.g. 'IMLFEELING2026': true
+};
+const USED_CODES_KEY = 'ipkids_used_codes';
+
+/* ═══════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════ */
+function scrollToGate(){
+  document.getElementById('landingPage').style.display='none';
+  document.getElementById('heroSection').style.display='none';
+  document.getElementById('toolContainer').style.display='block';
+  document.getElementById('paymentGate').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════════
+   STRIPE CHECKOUT
+   ─────────────────────────────────────────
+   This calls your Vercel serverless function
+   at /api/create-checkout-session which
+   creates a Stripe Checkout session and
+   returns a URL. The user is redirected to
+   Stripe's hosted page to complete payment.
+   On success, Stripe redirects back here
+   with ?payment=success in the URL.
+═══════════════════════════════════════════ */
+async function startCheckout(){
+  const btn = document.getElementById('stripeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Connecting to Stripe...';
+  try {
+    const resp = await fetch('/api/create-checkout-session', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        price: 499, // cents
+        product_name: 'IP Kids Discovery Report',
+        success_url: window.location.origin + window.location.pathname + '?payment=success',
+        cancel_url: window.location.href
+      })
+    });
+    const data = await resp.json();
+    if(data.url){
+      window.location.href = data.url;
+    } else {
+      throw new Error('No checkout URL returned');
+    }
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'Pay $4.99 & Unlock Now ▸';
+    showError('gateError', 'Could not connect to payment processor. Please try again or contact grow@urbandesignoutreach.com');
+    console.error(err);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   BETA CODE REDEMPTION
+═══════════════════════════════════════════ */
+function redeemBetaCode(){
+  const raw = document.getElementById('betaCodeInput').value.trim().toUpperCase();
+  clearError('gateError');
+  if(!raw) return showError('gateError', 'Please enter your access code.');
+
+  // Check if already used in this browser session
+  const used = JSON.parse(localStorage.getItem(USED_CODES_KEY) || '{}');
+  if(used[raw]) return showError('gateError', 'This code has already been used on this device. Each code is for one discovery.');
+
+  if(BETA_CODES[raw]){
+    // Mark as used
+    used[raw] = true;
+    localStorage.setItem(USED_CODES_KEY, JSON.stringify(used));
+    unlockTool();
+  } else {
+    showError('gateError', 'That code wasn\'t recognized. Check the spelling and try again, or contact grow@urbandesignoutreach.com');
+  }
+}
+
+/* ═══════════════════════════════════════════
+   UNLOCK TOOL
+   Called after successful payment redirect
+   OR after valid beta code
+═══════════════════════════════════════════ */
+function unlockTool(){
+  document.getElementById('paymentGate').style.display='none';
+  document.getElementById('consentSection').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  showToast('✦ Access granted — welcome to IP Academy!');
+}
+
+/* ═══════════════════════════════════════════
+   CHECK FOR STRIPE SUCCESS REDIRECT
+   Stripe appends ?payment=success on return
+═══════════════════════════════════════════ */
+(function checkPaymentReturn(){
+  const params = new URLSearchParams(window.location.search);
+  if(params.get('payment') === 'success'){
+    // Clean the URL
+    window.history.replaceState({}, document.title, window.location.pathname);
+    // Show tool container, skip gate
+    document.getElementById('landingPage').style.display='none';
+    document.getElementById('heroSection').style.display='none';
+    document.getElementById('toolContainer').style.display='block';
+    unlockTool();
+  }
+})();
+
+/* ═══════════════════════════════════════════
+   CONSENT
+═══════════════════════════════════════════ */
+function checkConsent(){
+  document.getElementById('consentBtn').disabled =
+    !(document.getElementById('check1').checked && document.getElementById('check2').checked);
+}
+function proceedToForm(){
+  document.getElementById('consentSection').style.display='none';
+  document.getElementById('formSection').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════════
+   LOADING ANIMATION
+═══════════════════════════════════════════ */
+const loadingLines=[
+  ['ACTIVATING YOUR GIFTS...','Scanning for superpowers'],
+  ['MAPPING YOUR POSSIBILITIES...','Connecting passions to pathways'],
+  ['ASSEMBLING YOUR TEAM...','Finding your people across the globe'],
+  ['BUILDING YOUR TIMELINE...','From today all the way to your future'],
+  ['ALMOST READY...','Your IP Kid profile is nearly complete']
+];
+let loadingInterval;
+function startLoading(){
+  let i=0;
+  loadingInterval=setInterval(()=>{
+    i=(i+1)%loadingLines.length;
+    document.getElementById('loadingText').textContent=loadingLines[i][0];
+    document.getElementById('loadingSub').textContent=loadingLines[i][1];
+  },2200);
+}
+function stopLoading(){clearInterval(loadingInterval);}
+
+/* ═══════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════ */
+function getInitials(n){return n.split(' ').map(w=>w[0]).join('').toUpperCase().slice(0,2);}
+function showError(id,msg){const el=document.getElementById(id);if(el){el.textContent=msg;el.classList.add('active');}}
+function clearError(id){const el=document.getElementById(id);if(el)el.classList.remove('active');}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+/* ═══════════════════════════════════════════
+   SUBMIT DISCOVERY
+═══════════════════════════════════════════ */
+async function submitForm(){
+  const name=document.getElementById('kidName').value.trim();
+  const age=document.getElementById('kidAge').value.trim();
+  const interests=document.getElementById('kidInterests').value.trim();
+  clearError('errorMsg');
+  if(!name) return showError('errorMsg','Please tell us your first name!');
+  if(!age||age<5||age>17) return showError('errorMsg','Please enter your age (5–17).');
+  if(!interests) return showError('errorMsg','Please share at least one thing you love doing!');
+
+  document.getElementById('formSection').style.display='none';
+  document.getElementById('loadingSection').classList.add('active');
+  document.getElementById('submitBtn').disabled=true;
+  startLoading();
+
+  const systemPrompt=`You are the IP Kids Discovery Engine, created by Urban Design Outreach. Your energy is the X-Men Academy — every kid who walks in already has a superpower, and your job is to NAME IT and show them what it unlocks. Be bold, specific, celebratory, and age-appropriate. Speak directly to the child with warmth and fire.
+
+SUPERPOWER: Generate a short, iconic 2-5 word superpower name (like "The World Builder" or "Sonic Storyteller" or "Code Whisperer"). One perfect emoji. A 2-sentence description written directly to the child — an origin story. Make it feel earned, real, and exciting.
+
+INSPIRATIONS: Exactly 3 real, well-known people. Must be genuinely globally diverse — different genders, ethnicities, nationalities drawn from Europe, Asia, Latin America, Africa, the Middle East, Oceania, Indigenous communities worldwide. Mix historical and contemporary. Each must authentically connect to THIS child's specific combination of interests.
+
+Respond with ONLY valid JSON. No markdown, no backticks, no preamble.
+
+{"superpower":{"name":"2-5 word iconic superpower name","emoji":"one perfect emoji","description":"2-sentence origin story to the child. Bold and specific."},"celebration":"2-3 sentences celebrating this child's specific combination. Use their name. Make it feel rare and powerful.","rightNow":["5-7 specific fun things THIS WEEK. Creative, actionable, free or low-cost."],"twoYears":{"title":"In the Next 2 Years","items":["4-5 specific clubs, skills, or experiences"]},"fiveYears":{"title":"In 5 Years","items":["4-5 specific programs, competitions, or milestones"]},"youngAdult":{"title":"As a Young Adult","items":["4-5 real exciting career paths or entrepreneurial directions"]},"inspirations":[{"name":"Full Name","role":"Their field and what they are known for","why":"One sentence tying them specifically to this child's interests"}]}`;
+
+  const userPrompt=`Child's name: ${name}\nAge: ${age}\nInterests: ${interests}\n\nGenerate their IP Kids discovery. Inspirations must be genuinely globally diverse.`;
+
+  try{
+    const resp=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:2000,
+        system:systemPrompt,
+        messages:[{role:'user',content:userPrompt}]
+      })
+    });
+    const data=await resp.json();
+    const raw=data.content.map(b=>b.text||'').join('');
+    const clean=raw.replace(/```json|```/g,'').trim();
+    const result=JSON.parse(clean);
+    stopLoading();
+    document.getElementById('loadingSection').classList.remove('active');
+    gName=name; gAge=age;
+    gSuperpower=result.superpower.name;
+    gCelebration=result.celebration;
+    gPowers=result.rightNow||[];
+    gResultData=result;
+    renderResult(name,age,result);
+  }catch(err){
+    stopLoading();
+    document.getElementById('loadingSection').classList.remove('active');
+    document.getElementById('formSection').style.display='block';
+    document.getElementById('submitBtn').disabled=false;
+    showError('errorMsg','Something went wrong generating your discovery. Please try again!');
+    console.error(err);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   RENDER RESULT
+═══════════════════════════════════════════ */
+function renderResult(name,age,r){
+  const section=document.getElementById('resultSection');
+  const tBlocks=[
+    {cls:'',badge:'Right Now',data:r.rightNow,title:'Things You Can Do This Week'},
+    {cls:'two',badge:'Next 2 Years',data:r.twoYears.items,title:r.twoYears.title},
+    {cls:'three',badge:'In 5 Years',data:r.fiveYears.items,title:r.fiveYears.title},
+  ];
+  const timelineHtml=tBlocks.map(b=>`
+    <div class="timeline-item ${b.cls}">
+      <div class="tl-badge">${b.badge}</div>
+      <div class="tl-title">${b.title}</div>
+      <div class="section-body"><ul>${b.data.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    </div>`).join('');
+  const inspHtml=r.inspirations.map(p=>`
+    <div class="inspo-card">
+      <div class="inspo-init">${getInitials(p.name)}</div>
+      <div class="inspo-name">${p.name}</div>
+      <div class="inspo-role">${p.role}</div>
+      <div class="inspo-why">${p.why}</div>
+    </div>`).join('');
+
+  section.innerHTML=`
+    <div id="printable">
+      <div class="result-header">
+        <div class="result-name">YOU ARE <span>${name.toUpperCase()}</span></div>
+        <div class="result-subtitle">Age ${age} &nbsp;·&nbsp; Intellectual Property Kid &nbsp;·&nbsp; IP Academy</div>
+      </div>
+      <div class="superpower-card">
+        <div class="sp-eyebrow">✦ Your Superpower Has Been Identified</div>
+        <span class="sp-icon">${r.superpower.emoji}</span>
+        <div class="sp-name">${r.superpower.name.toUpperCase()}</div>
+        <p class="sp-desc">${r.superpower.description}</p>
+      </div>
+      <div class="section-card">
+        <div class="section-label">✦ Your Gift Range</div>
+        <div class="section-title">Why Your Combination Is Rare</div>
+        <div class="section-body"><p>${r.celebration}</p></div>
+      </div>
+      <div class="timeline-grid">${timelineHtml}</div>
+      <div class="section-card brown" style="margin-top:1.5rem;">
+        <div class="section-label">✦ Your Future</div>
+        <div class="section-title">${r.youngAdult.title}</div>
+        <div class="section-body"><ul>${r.youngAdult.items.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+      </div>
+      <div class="section-card navy-bg">
+        <div class="section-label">✦ Your People</div>
+        <div class="section-title">IP Academy Hall of Inspiration</div>
+        <div class="inspo-grid">${inspHtml}</div>
+      </div>
+      <div style="text-align:center;padding:1.5rem 0 .5rem;">
+        <p style="font-family:'Jura',monospace;font-size:.72rem;letter-spacing:.15em;color:#888;text-transform:uppercase;">Urban Design Outreach &nbsp;·&nbsp; urbandesignoutreach.com &nbsp;·&nbsp; IP Kids</p>
+      </div>
+    </div>
+
+    <div class="action-bar">
+      <div class="action-bar-label">✦ Save &amp; Share Your Discovery</div>
+      <div class="action-btns">
+        <button class="btn-action btn-green" onclick="openPrintWindow()">⬇ Save / Download PDF</button>
+        <button class="btn-action btn-orange-outline" onclick="openShareModal()">↗ Share My Discovery</button>
+      </div>
+    </div>
+    <div class="restart-wrap" style="margin-top:1rem;">
+      <button class="btn-action btn-ghost" style="width:100%;justify-content:center;padding:.85rem;" onclick="restartForm()">↩ Start a New Discovery</button>
+    </div>
+  `;
+  section.classList.add('active');
+  section.scrollIntoView({behavior:'smooth'});
+}
+
+/* ═══════════════════════════════════════════
+   PDF: SELF-CONTAINED POPUP WINDOW
+   Opens a new tab with clean HTML, fonts
+   loaded, and a print button at the top.
+   User clicks print → Save as PDF.
+═══════════════════════════════════════════ */
+function openPrintWindow(){
+  if(!gResultData){showToast('Please wait for your discovery to load.');return;}
+  const r=gResultData;
+  const tBlocks=[
+    {cls:'',badge:'Right Now',data:r.rightNow,title:'Things You Can Do This Week'},
+    {cls:'two',badge:'Next 2 Years',data:r.twoYears.items,title:r.twoYears.title},
+    {cls:'three',badge:'In 5 Years',data:r.fiveYears.items,title:r.fiveYears.title},
+  ];
+  const tlHtml=tBlocks.map(b=>`<div class="ti ${b.cls}"><div class="tb">${b.badge}</div><div class="tt">${b.title}</div><ul>${b.data.map(i=>`<li>${i}</li>`).join('')}</ul></div>`).join('');
+  const inHtml=r.inspirations.map(p=>`<div class="ic"><div class="ii">${getInitials(p.name)}</div><div class="in">${p.name}</div><div class="ir">${p.role}</div><div class="iw">${p.why}</div></div>`).join('');
+  const yaItems=r.youngAdult.items.map(i=>`<li>${i}</li>`).join('');
+
+  const html=`<!DOCTYPE html><html><head><meta charset="UTF-8">
+<title>IP Kids — ${gName}'s Discovery</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Rokkitt:wght@400;600&family=Jura:wght@400;600&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Rokkitt',serif;background:#fafaf8;color:#1a1a1a;padding:2rem;}
+.page{max-width:700px;margin:0 auto;}
+.prbtn{display:block;width:100%;padding:1rem;background:#001984;color:#fff;border:none;border-radius:10px;font-family:'Bebas Neue',sans-serif;font-size:1.4rem;letter-spacing:.1em;cursor:pointer;margin-bottom:1.75rem;text-align:center;}
+.prbtn:hover{background:#002ab5;}
+.hdr{background:#001984;border-radius:14px;padding:1.75rem;text-align:center;margin-bottom:1.25rem;}
+.hn{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:#fff;letter-spacing:.05em;}
+.hn span{color:#ffa626;}
+.hs{font-family:'Oswald',sans-serif;font-size:.85rem;color:rgba(255,255,255,.6);letter-spacing:.1em;text-transform:uppercase;margin-top:.25rem;}
+.spc{background:#001984;border-radius:12px;padding:1.5rem;margin-bottom:1.25rem;text-align:center;}
+.spe{font-family:'Jura',monospace;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:#ffa626;margin-bottom:.4rem;}
+.spi{font-size:2.2rem;display:block;margin-bottom:.4rem;}
+.spn{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;color:#fff;letter-spacing:.06em;margin-bottom:.4rem;}
+.spd{font-family:'Rokkitt',serif;font-size:.95rem;color:rgba(255,255,255,.88);line-height:1.65;}
+.card{background:#fff;border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;border-left:5px solid #001984;}
+.card.g{border-left-color:#008500;}
+.card.br{border-left-color:#824930;}
+.cl{font-family:'Jura',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#001984;margin-bottom:.2rem;}
+.card.g .cl{color:#008500;}.card.br .cl{color:#824930;}
+.ct{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:#001984;margin-bottom:.65rem;}
+p,li{font-family:'Rokkitt',serif;font-size:.97rem;line-height:1.7;}
+ul{list-style:none;padding:0;}
+ul li{padding:.3rem 0 .3rem 1.3rem;position:relative;border-bottom:1px solid #f0f0f0;}
+ul li:last-child{border-bottom:none;}
+ul li::before{content:'▸';position:absolute;left:0;color:#ffa626;}
+.tg{display:grid;gap:.9rem;margin-bottom:1.1rem;}
+.ti{background:#fff;border-radius:10px;padding:1.1rem 1.35rem;border-top:4px solid #008500;}
+.ti.two{border-top-color:#ffa626;}.ti.three{border-top-color:#001984;}
+.tb{display:inline-block;font-family:'Jura',monospace;font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;padding:2px 8px;border-radius:20px;background:#e6f4e6;color:#008500;margin-bottom:.45rem;}
+.ti.two .tb{background:#fff4e0;color:#824930;}.ti.three .tb{background:#e6eaff;color:#001984;}
+.tt{font-family:'Oswald',sans-serif;font-size:.95rem;font-weight:600;color:#1a1a1a;margin-bottom:.55rem;}
+.ins{background:#001984;border-radius:12px;padding:1.4rem;margin-bottom:1.1rem;}
+.insl{font-family:'Jura',monospace;font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;color:#ffa626;margin-bottom:.2rem;}
+.inst{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:600;color:#fff;margin-bottom:.85rem;}
+.ig{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;}
+.ic{background:#e6eaff;border-radius:9px;padding:.9rem;text-align:center;}
+.ii{width:40px;height:40px;border-radius:50%;background:#001984;color:#fff;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;display:flex;align-items:center;justify-content:center;margin:0 auto .55rem;}
+.in{font-family:'Oswald',sans-serif;font-size:.85rem;font-weight:600;color:#001984;}
+.ir{font-family:'Jura',monospace;font-size:.65rem;color:#555;margin-top:.15rem;line-height:1.3;}
+.iw{font-family:'Rokkitt',serif;font-size:.78rem;color:#333;margin-top:.35rem;font-style:italic;line-height:1.4;}
+.ft{text-align:center;padding:1.25rem 0 .25rem;}
+.ft p{font-family:'Jura',monospace;font-size:.65rem;letter-spacing:.14em;color:#888;text-transform:uppercase;}
+@media print{body{padding:.25rem;background:#fff;}.prbtn{display:none!important;}}
+</style></head><body>
+<div class="page">
+<button class="prbtn" onclick="window.print()">⬇ CLICK HERE TO PRINT / SAVE AS PDF</button>
+<div class="hdr"><div class="hn">YOU ARE <span>${gName.toUpperCase()}</span></div><div class="hs">Age ${gAge} · Intellectual Property Kid · IP Academy</div></div>
+<div class="spc"><div class="spe">✦ Your Superpower Has Been Identified</div><span class="spi">${r.superpower.emoji}</span><div class="spn">${r.superpower.name.toUpperCase()}</div><p class="spd">${r.superpower.description}</p></div>
+<div class="card"><div class="cl">✦ Your Gift Range</div><div class="ct">Why Your Combination Is Rare</div><p>${r.celebration}</p></div>
+<div class="tg">${tlHtml}</div>
+<div class="card br"><div class="cl">✦ Your Future</div><div class="ct">${r.youngAdult.title}</div><ul>${yaItems}</ul></div>
+<div class="ins"><div class="insl">✦ Your People</div><div class="inst">IP Academy Hall of Inspiration</div><div class="ig">${inHtml}</div></div>
+<div class="ft"><p>Urban Design Outreach · urbandesignoutreach.com · IP Kids · "We animate the spaces between people."</p></div>
+</div></body></html>`;
+
+  const win=window.open('','_blank');
+  if(win){win.document.write(html);win.document.close();}
+  else showToast('Pop-up blocked — please allow pop-ups for this site and try again.');
+}
+
+/* ═══════════════════════════════════════════
+   SHARE MODAL
+═══════════════════════════════════════════ */
+function openShareModal(){
+  const top3=gPowers.slice(0,3).map((p,i)=>`${i+1}. ${p}`).join('\n');
+  const snip=gCelebration.length>160?gCelebration.slice(0,157)+'...':gCelebration;
+  const txt=`⚡ ${gName.toUpperCase()} IS AN IP KID!\nSuperpower Unlocked: ${gSuperpower}\n\n"${snip}"\n\nThis week they can:\n${top3}\n\nDiscover YOUR child's superpower → urbandesignoutreach.com\n— IP Kids by Urban Design Outreach\n"We animate the spaces between people."`;
+  document.getElementById('shareTextBox').value=txt;
+  document.getElementById('shareModal').classList.add('active');
+}
+function closeShareModal(){document.getElementById('shareModal').classList.remove('active');}
+function copyShareText(){
+  const box=document.getElementById('shareTextBox');
+  box.select();box.setSelectionRange(0,99999);
+  let copied=false;
+  try{document.execCommand('copy');copied=true;}catch(e){}
+  if(!copied&&navigator.clipboard){
+    navigator.clipboard.writeText(box.value)
+      .then(()=>{showToast('Copied! Paste anywhere to share.');setTimeout(closeShareModal,800);})
+      .catch(()=>showToast('Select the text above and copy with Ctrl+C / Cmd+C'));
+    return;
+  }
+  if(copied){showToast('Copied! Paste anywhere to share.');setTimeout(closeShareModal,800);}
+}
+document.getElementById('shareModal').addEventListener('click',function(e){if(e.target===this)closeShareModal();});
+
+/* ═══════════════════════════════════════════
+   RESTART
+═══════════════════════════════════════════ */
+function restartForm(){
+  document.getElementById('resultSection').classList.remove('active');
+  document.getElementById('resultSection').innerHTML='';
+  ['kidName','kidAge','kidInterests'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
+  document.getElementById('submitBtn').disabled=false;
+  gName='';gAge='';gSuperpower='';gCelebration='';gPowers=[];gResultData=null;
+  // Return to payment gate (each run costs a payment in production,
+  // but during beta/same session let them re-run the form directly)
+  document.getElementById('formSection').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
