@@ -6,6 +6,10 @@
       "use": "@vercel/node"
     },
     {
+      "src": "api/create-checkout-session.js",
+      "use": "@vercel/node"
+    },
+    {
       "src": "public/**",
       "use": "@vercel/static"
     }
@@ -14,6 +18,10 @@
     {
       "src": "/api/chat",
       "dest": "/api/chat.js"
+    },
+    {
+      "src": "/api/create-checkout-session",
+      "dest": "/api/create-checkout-session.js"
     },
     {
       "src": "/(.*)",
