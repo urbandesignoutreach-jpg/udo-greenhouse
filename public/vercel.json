@@ -1,1 +1,31 @@
-
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "api/create-checkout-session.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "api/generate-discovery.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "public/**",
+      "use": "@vercel/static"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/create-checkout-session",
+      "dest": "/api/create-checkout-session.js"
+    },
+    {
+      "src": "/api/generate-discovery",
+      "dest": "/api/generate-discovery.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/public/$1"
+    }
+  ]
+}
