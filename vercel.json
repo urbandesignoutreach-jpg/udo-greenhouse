@@ -2,15 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "api/chat.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/create-checkout-session.js",
-      "use": "@vercel/node"
-    },
-    {
-      "src": "api/generate-discovery.js",
+      "src": "api/*.js",
       "use": "@vercel/node"
     },
     {
@@ -20,16 +12,8 @@
   ],
   "routes": [
     {
-      "src": "/api/chat",
-      "dest": "/api/chat.js"
-    },
-    {
-      "src": "/api/create-checkout-session",
-      "dest": "/api/create-checkout-session.js"
-    },
-    {
-      "src": "/api/generate-discovery",
-      "dest": "/api/generate-discovery.js"
+      "src": "/api/(.*)",
+      "dest": "/api/$1.js"
     },
     {
       "src": "/(.*)",
