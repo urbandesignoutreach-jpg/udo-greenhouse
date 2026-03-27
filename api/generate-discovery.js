@@ -44,7 +44,10 @@ Respond with ONLY valid JSON. No markdown, no backticks, no preamble.
     const raw = data.content.map(b => b.text || '').join('');
     const clean = raw.replace(/```json|```/g, '').trim();
     const result = JSON.parse(clean);
-
+if (!result.celebration) {
+      console.error('Missing fields in result:', JSON.stringify(result).slice(0,200));
+      return res.status(500).json({ error: 'Incomplete response from AI' });
+    }
     return res.status(200).json(result);
 
   } catch (err) {
