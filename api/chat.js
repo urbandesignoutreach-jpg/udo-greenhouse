@@ -14,6 +14,16 @@ module.exports = async function handler(req, res) {
   try {
     const body = req.body;
 
+    // Ensure model is always set
+    if (!body.model) {
+      body.model = 'claude-sonnet-4-20250514';
+    }
+
+    // Ensure max_tokens is always set
+    if (!body.max_tokens) {
+      body.max_tokens = 1000;
+    }
+
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
       headers: {
