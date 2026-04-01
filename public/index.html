@@ -1085,12 +1085,14 @@ Write in warm, natural prose. Use "you" and "your" when addressing the person �
 
 ${loc}
 
+Respond IMMEDIATELY with a bulleted list — no preamble, no "let me think", no "here are my suggestions". Start your response directly with the first <ul><li> item.
+
 Give 6-10 specific, actionable suggestions for how the village and ecosystem can meet this need. Mix digital and human resources. Always include:
   - At least 2-3 in-person or human-centered local resources (community groups, neighborhood networks, local mentors, mutual aid organizations, in-person learning opportunities specific to their location)
   - Specific named organizations, programs, or types of people to seek out in their area
   - At least one reference to the UDO ecosystem itself (What Do We Do? monthly networking events in Atlanta's Avondale Estates, the Greenhouse network, or Valeasia Walker's 150+ person community)
 
-Format as a clean bulleted list using <ul><li> tags. Keep each item specific and actionable — not generic advice. End with one warm closing sentence in the UDO voice.
+Format as a clean bulleted list using <ul><li> tags. Every <li> must be a complete, finished sentence. Do not cut off mid-thought. End with one warm closing sentence in the UDO voice outside the list.
 
 IMPORTANT: Only suggest organizations you are confident exist in the person's location. Do not invent organizations. If you are uncertain whether a specific organization is still active, describe the type of organization to seek rather than naming one that may have closed.
 
@@ -1223,7 +1225,7 @@ TONE: Warm, practical, rooted. Every suggestion should feel like it came from a 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           model: "claude-sonnet-4-6",
-          max_tokens: 1000,
+          max_tokens: 1500,
           system: buildNeedsPrompt(),
           messages: [{ role: "user", content: context }]
         })
