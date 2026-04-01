@@ -8,20 +8,11 @@
 <style>
   :root {
     --navy:       #001984;
-    --navy-deep:  #ffffff;
     --navy-mid:   #002db8;
     --green:      #008500;
     --green-mid:  #00a800;
-    --green-light:#00a800;
     --orange:     #ffa626;
     --brown:      #824930;
-    --cream:      #1a1a2e;
-    --paper:      #f8f8f8;
-    --white:      #ffffff;
-    --mist:       #334;
-    --fog:        #556;
-    --bg:         #ffffff;
-    --surface:    #f4f6ff;
     --border:     rgba(0,25,132,0.15);
   }
 
@@ -41,23 +32,18 @@
     padding: 48px 32px 80px;
   }
 
-  /* TOP BAR */
+  /* ── TOP BAR ── */
   .top-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 44px;
-    padding-bottom: 18px;
+    display: flex; align-items: center; justify-content: space-between;
+    margin-bottom: 44px; padding-bottom: 18px;
     border-bottom: 2px solid var(--navy);
     animation: fadeDown 0.7s ease both;
   }
   .top-bar-logo { display: flex; align-items: center; gap: 14px; }
-  .logo-img { width: 48px; height: 48px; object-fit: contain; display: block; }
   .logo-text-wrap { display: flex; flex-direction: column; }
   .logo-udo {
     font-family: "Bebas Neue", sans-serif;
-    font-size: 24px; letter-spacing: 3px;
-    color: var(--navy); line-height: 1;
+    font-size: 24px; letter-spacing: 3px; color: var(--navy); line-height: 1;
   }
   .logo-full {
     font-family: "Jura", sans-serif;
@@ -70,9 +56,9 @@
     text-transform: uppercase; color: #667; text-align: right;
   }
 
-  /* HERO */
+  /* ── HERO ── */
   .hero {
-    text-align: center; margin-bottom: 40px;
+    text-align: center; margin-bottom: 36px;
     animation: fadeDown 0.8s 0.1s ease both;
   }
   .hero-eyebrow {
@@ -98,105 +84,166 @@
     line-height: 1.6; max-width: 500px; margin: 18px auto 0;
   }
 
-  /* QUICK PROMPTS */
-  .quick-prompts {
-    display: flex; flex-wrap: wrap; gap: 8px;
-    margin-bottom: 20px; animation: fadeUp 0.9s 0.2s ease both;
-  }
-  .quick-btn {
-    background: white; border: 1px solid rgba(0,25,132,0.25);
-    color: #556; font-family: "Jura", sans-serif;
-    font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase;
-    padding: 9px 18px; cursor: pointer; border-radius: 3px; transition: all 0.2s;
-  }
-  .quick-btn:hover {
-    border-color: var(--green); color: var(--green);
-    background: rgba(0,133,0,0.05);
-  }
-
-  /* CONVERSATION */
-  .conversation-wrap {
+  /* ── ROOT WORK FORM ── */
+  .rootwork-wrap {
     background: white;
     border: 1px solid var(--border);
     border-radius: 6px; overflow: hidden;
     margin-bottom: 24px;
     box-shadow: 0 4px 32px rgba(0,25,132,0.1), 0 1px 4px rgba(0,25,132,0.06);
-    animation: fadeUp 0.9s 0.25s ease both;
+    animation: fadeUp 0.9s 0.2s ease both;
   }
-  .conv-header {
+
+  .rootwork-header {
     background: var(--navy);
-    padding: 13px 22px;
-    display: flex; align-items: center; gap: 8px;
+    padding: 18px 28px;
+    display: flex; align-items: center; gap: 10px;
   }
   .dot { width: 8px; height: 8px; border-radius: 50%; }
   .d1 { background: var(--orange); }
-  .d2 { background: var(--green-light); }
+  .d2 { background: var(--green-mid); }
   .d3 { background: rgba(255,255,255,0.3); }
-  .conv-header-label {
+  .rootwork-header-label {
     font-family: "Jura", sans-serif; font-size: 10px;
     letter-spacing: 3px; text-transform: uppercase;
     color: rgba(255,255,255,0.5); margin-left: auto;
   }
 
-  .messages {
-    padding: 28px 28px 8px;
-    min-height: 140px; max-height: 540px;
-    overflow-y: auto; scroll-behavior: smooth;
+  .rootwork-intro {
+    padding: 24px 28px 0;
+    font-family: "Rokkitt", serif;
+    font-size: 14.5px; font-style: italic;
+    line-height: 1.7; color: #556;
+    border-bottom: 1px solid rgba(0,25,132,0.07);
+    padding-bottom: 20px;
+    margin-bottom: 4px;
+  }
+
+  .rootwork-form { padding: 4px 28px 24px; }
+
+  .rw-field {
+    margin-top: 22px;
+    position: relative;
+  }
+
+  .rw-field-header {
+    display: flex; align-items: baseline; gap: 10px;
+    margin-bottom: 8px;
+  }
+
+  .rw-number {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px; line-height: 1;
+    color: rgba(0,25,132,0.12);
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+
+  .rw-label-wrap {}
+
+  .rw-label {
+    font-family: "Oswald", sans-serif;
+    font-size: 13px; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600;
+    display: block; line-height: 1.2;
+  }
+  .rw-label.lv1 { color: var(--green); }
+  .rw-label.lv2 { color: var(--navy); }
+  .rw-label.lv3 { color: var(--orange); }
+  .rw-label.lv4 { color: var(--brown); }
+
+  .rw-hint {
+    font-family: "Rokkitt", serif;
+    font-size: 12.5px; font-style: italic;
+    color: #889; line-height: 1.4; display: block; margin-top: 2px;
+  }
+
+  .rw-input {
+    width: 100%;
+    background: #fafbff;
+    border: 1px solid rgba(0,25,132,0.18);
+    border-radius: 4px;
+    padding: 13px 16px;
+    font-family: "Rokkitt", serif;
+    font-size: 15px; color: #1a1a2e;
+    outline: none;
+    resize: none;
+    min-height: 58px;
+    max-height: 120px;
+    line-height: 1.55;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .rw-input::placeholder { color: #bbc; font-style: italic; }
+  .rw-input:focus { border-color: var(--green); background: #f4fbf4; }
+  .rw-input.lv2:focus { border-color: var(--navy); background: #f4f6ff; }
+  .rw-input.lv3:focus { border-color: var(--orange); background: #fffaf4; }
+  .rw-input.lv4:focus { border-color: var(--brown); background: #fdf8f5; }
+
+  .rw-divider {
+    height: 1px; background: rgba(0,25,132,0.07);
+    margin: 4px 0 0;
+  }
+
+  .rootwork-submit-row {
+    display: flex; align-items: center;
+    gap: 16px; padding: 20px 28px;
+    background: #fafbff;
+    border-top: 1px solid rgba(0,25,132,0.08);
+    flex-wrap: wrap;
+  }
+
+  .rootwork-submit-note {
+    font-family: "Jura", sans-serif;
+    font-size: 10px; letter-spacing: 1.5px;
+    text-transform: uppercase; color: #aab;
+    flex: 1; min-width: 160px;
+  }
+
+  .plant-btn {
+    background: var(--green); border: none; color: white;
+    font-family: "Bebas Neue", sans-serif; font-size: 22px;
+    letter-spacing: 3px;
+    padding: 13px 36px; cursor: pointer; border-radius: 4px;
+    transition: background 0.2s, transform 0.1s;
+    white-space: nowrap;
+    box-shadow: 0 3px 16px rgba(0,133,0,0.25);
+  }
+  .plant-btn:hover { background: var(--green-mid); transform: translateY(-1px); }
+  .plant-btn:active { transform: scale(0.97); }
+  .plant-btn:disabled { background: #aab; cursor: not-allowed; transform: none; box-shadow: none; }
+
+  /* ── RESPONSE PANEL ── */
+  .response-wrap {
+    display: none;
     background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 32px rgba(0,25,132,0.1);
+    animation: fadeUp 0.5s ease both;
   }
-  .messages::-webkit-scrollbar { width: 3px; }
-  .messages::-webkit-scrollbar-thumb { background: rgba(0,25,132,0.2); border-radius: 2px; }
+  .response-wrap.active { display: block; }
 
-  .msg { margin-bottom: 26px; animation: msgIn 0.35s ease both; }
-
-  .msg-label {
-    font-family: "Jura", sans-serif; font-size: 9px;
-    letter-spacing: 3px; text-transform: uppercase; margin-bottom: 8px;
+  .response-header {
+    background: var(--green);
+    padding: 13px 22px;
+    display: flex; align-items: center; gap: 8px;
   }
-  .msg-ai .msg-label { color: var(--green); }
-  .msg-user .msg-label { color: var(--orange); text-align: right; }
+  .response-header-label {
+    font-family: "Jura", sans-serif; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.7); margin-left: auto;
+  }
 
-  .msg-ai .msg-bubble {
-    background: #f4f8f4;
-    border-left: 3px solid var(--green);
-    padding: 18px 22px; border-radius: 0 6px 6px 0;
+  .response-body {
+    padding: 28px 28px 24px;
     font-family: "Rokkitt", serif; font-size: 15.5px;
     line-height: 1.78; color: #1a1a2e;
   }
-  .msg-user .msg-bubble {
-    background: #fff8f0;
-    border-right: 3px solid var(--orange);
-    padding: 14px 18px; border-radius: 6px 0 0 6px;
-    font-family: "Rokkitt", serif; font-size: 15px;
-    line-height: 1.65; color: #1a1a2e;
-    text-align: right; max-width: 82%; margin-left: auto; font-style: italic;
-  }
 
-  .msg-bubble .tier {
-    margin: 16px 0 8px;
-    font-family: "Oswald", sans-serif; font-size: 11px;
-    letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
-  }
-  .tier-easy { color: var(--green); }
-  .tier-stretch { color: var(--orange); }
-  .tier-aspirational { color: var(--brown); }
-
-  .msg-bubble ul { list-style: none; margin: 4px 0 14px 0; padding: 0; }
-  .msg-bubble ul li {
-    padding: 5px 0 5px 20px; position: relative;
-    font-size: 14.5px; line-height: 1.65; color: #334;
-    font-family: "Rokkitt", serif;
-  }
-  .msg-bubble ul li::before {
-    content: "→"; position: absolute; left: 0;
-    color: var(--green); font-family: "Jura", sans-serif;
-    font-size: 12px; top: 6px;
-  }
-  .msg-bubble strong { color: var(--navy); font-weight: 700; }
-  .msg-bubble em { color: var(--green); font-style: italic; }
-
-  /* Typing */
-  .typing { display: none; padding: 0 28px 20px; background: white; }
+  /* ── TYPING ── */
+  .typing { display: none; padding: 24px 28px; }
   .typing.active { display: flex; align-items: center; gap: 6px; }
   .typing-dot {
     width: 6px; height: 6px; background: var(--green);
@@ -209,41 +256,148 @@
     letter-spacing: 2px; color: #889; text-transform: uppercase; margin-left: 4px;
   }
 
-  /* INPUT */
-  .input-area {
-    border-top: 1px solid rgba(0,25,132,0.1);
-    padding: 18px 22px; display: flex; gap: 12px;
-    align-items: flex-end; background: #fafbff;
+  /* ── TIER LABELS ── */
+  .tier {
+    margin: 18px 0 8px;
+    font-family: "Oswald", sans-serif; font-size: 11px;
+    letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
+    display: flex; align-items: center; gap: 8px;
   }
-  .input-field {
-    flex: 1; background: white;
-    border: 1px solid rgba(0,25,132,0.2);
+  .tier::after { content: ""; flex: 1; height: 1px; background: currentColor; opacity: 0.15; }
+  .tier-easy { color: var(--green); }
+  .tier-stretch { color: var(--orange); }
+  .tier-aspirational { color: var(--brown); }
+  .tier-human { color: var(--navy); }
+  .tier-human::before { content: "✋"; font-size: 12px; }
+
+  .response-body ul { list-style: none; margin: 6px 0 14px 0; padding: 0; }
+  .response-body ul li {
+    padding: 5px 0 5px 20px; position: relative;
+    font-size: 14.5px; line-height: 1.65; color: #334;
+  }
+  .response-body ul li::before {
+    content: "→"; position: absolute; left: 0;
+    color: var(--green); font-family: "Jura", sans-serif;
+    font-size: 12px; top: 6px;
+  }
+  .response-body strong { color: var(--navy); font-weight: 700; }
+  .response-body em { color: var(--green); font-style: italic; }
+
+  /* ── NEEDS FOLLOW-UP ── */
+  .needs-wrap {
+    display: none;
+    background: white;
+    border: 1px solid rgba(255,166,38,0.3);
+    border-radius: 6px; overflow: hidden;
+    margin-bottom: 24px;
+    box-shadow: 0 4px 20px rgba(255,166,38,0.1);
+    animation: fadeUp 0.5s ease both;
+  }
+  .needs-wrap.active { display: block; }
+
+  .needs-header {
+    background: var(--orange);
+    padding: 13px 22px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .needs-header-label {
+    font-family: "Jura", sans-serif; font-size: 10px;
+    letter-spacing: 3px; text-transform: uppercase;
+    color: rgba(255,255,255,0.8); margin-left: auto;
+  }
+  .needs-question {
+    padding: 20px 28px 6px;
+    font-family: "Rokkitt", serif; font-size: 15.5px;
+    line-height: 1.65; color: #1a1a2e; font-style: italic;
+  }
+  .needs-question strong { color: var(--navy); font-style: normal; }
+  .needs-input-area {
+    padding: 12px 22px 18px;
+    display: flex; gap: 12px; align-items: flex-end;
+  }
+  .needs-input {
+    flex: 1; background: #fffaf4;
+    border: 1px solid rgba(255,166,38,0.35);
     border-radius: 4px; padding: 13px 18px;
     font-family: "Rokkitt", serif; font-size: 15px;
     color: #1a1a2e; resize: none; outline: none;
-    min-height: 50px; max-height: 140px;
+    min-height: 50px; max-height: 120px;
     transition: border-color 0.2s; line-height: 1.5;
   }
-  .input-field::placeholder { color: #aab; font-style: italic; }
-  .input-field:focus { border-color: var(--green); }
-
-  .send-btn {
-    background: var(--green); border: none; color: white;
+  .needs-input::placeholder { color: #bbb; font-style: italic; }
+  .needs-input:focus { border-color: var(--orange); }
+  .needs-send-btn {
+    background: var(--orange); border: none; color: white;
     font-family: "Oswald", sans-serif; font-size: 13px;
-    letter-spacing: 3px; text-transform: uppercase;
-    padding: 13px 24px; cursor: pointer; border-radius: 4px;
-    transition: background 0.2s, transform 0.1s;
-    white-space: nowrap; font-weight: 500; height: 50px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 13px 22px; cursor: pointer; border-radius: 4px;
+    transition: background 0.2s; white-space: nowrap;
+    font-weight: 500; height: 50px;
   }
-  .send-btn:hover { background: var(--green-mid); }
-  .send-btn:active { transform: scale(0.97); }
-  .send-btn:disabled { background: #aab; cursor: not-allowed; }
+  .needs-send-btn:hover { background: #e6941f; }
+  .needs-send-btn:disabled { background: #ccc; cursor: not-allowed; }
 
-  /* ACTIONS */
+  /* Needs AI response */
+  .needs-response {
+    display: none;
+    padding: 4px 28px 24px;
+    font-family: "Rokkitt", serif; font-size: 15px;
+    line-height: 1.75; color: #1a1a2e;
+    border-top: 1px solid rgba(255,166,38,0.15);
+  }
+  .needs-response.active { display: block; }
+  .needs-response ul { list-style: none; margin: 6px 0 12px; padding: 0; }
+  .needs-response ul li {
+    padding: 5px 0 5px 20px; position: relative;
+    font-size: 14.5px; line-height: 1.65; color: #334;
+  }
+  .needs-response ul li::before {
+    content: "→"; position: absolute; left: 0;
+    color: var(--orange); font-size: 12px; top: 6px;
+  }
+  .needs-response strong { color: var(--navy); font-weight: 700; }
+  .needs-response em { color: var(--orange); font-style: italic; }
+  .needs-disclaimer {
+    display: none;
+    margin: 0 22px 20px;
+    padding: 12px 16px;
+    background: #fdf9f0;
+    border: 1px solid rgba(255,166,38,0.2);
+    border-left: 3px solid var(--orange);
+    border-radius: 0 4px 4px 0;
+    font-family: "Jura", sans-serif;
+    font-size: 10px; letter-spacing: 0.8px;
+    line-height: 1.7; color: #778;
+  }
+  .needs-disclaimer.active { display: block; }
+  .needs-disclaimer-icon {
+    color: var(--orange); font-size: 12px;
+    margin-right: 6px; vertical-align: middle;
+  }
+  .needs-typing { display: none; padding: 16px 28px; }
+  .needs-typing.active { display: flex; align-items: center; gap: 6px; }
+  .needs-typing .typing-dot { background: var(--orange); }
+  .needs-typing .typing-text { color: #aab; }
+
+  /* ── ACTIONS ── */
   .action-row {
     display: flex; gap: 10px; justify-content: center;
-    flex-wrap: wrap; margin-top: 12px;
+    flex-wrap: wrap; margin-bottom: 12px;
     animation: fadeUp 1s 0.5s ease both;
+  }
+  .action-btn-hero {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    border: 2px solid var(--orange);
+    color: white; font-family: "Bebas Neue", sans-serif;
+    font-size: 20px; letter-spacing: 3px;
+    padding: 14px 36px; cursor: pointer; border-radius: 4px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 20px rgba(0,25,132,0.3);
+    white-space: nowrap;
+  }
+  .action-btn-hero:hover {
+    box-shadow: 0 6px 28px rgba(0,25,132,0.45);
+    transform: translateY(-1px);
   }
   .action-btn {
     background: white; border: 1px solid rgba(0,25,132,0.2);
@@ -252,53 +406,183 @@
     padding: 10px 20px; cursor: pointer; border-radius: 4px; transition: all 0.2s;
   }
   .action-btn:hover { border-color: var(--navy); color: var(--navy); }
-  .action-btn.orange:hover { border-color: var(--orange); color: var(--orange); }
 
-  /* ===== RESULT MODAL ===== */
+  /* ── WHAT GROWS NEXT ── */
+  #whatGrowsNext {
+    display: none;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s ease both;
+  }
+  #whatGrowsNext.active { display: block; }
+
+  .wgn-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 16px;
+  }
+  .wgn-title {
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 28px; letter-spacing: 3px; color: var(--navy);
+  }
+  .wgn-rule { flex: 1; height: 2px; background: linear-gradient(90deg, var(--navy), transparent); }
+
+  .wgn-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+
+  .wgn-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 6px; overflow: hidden;
+    display: flex; flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .wgn-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,25,132,0.15); }
+
+  .wgn-card-top {
+    padding: 18px 20px 14px;
+    flex: 1;
+  }
+  .wgn-card-icon {
+    font-size: 22px; margin-bottom: 10px; display: block;
+  }
+  .wgn-card-eyebrow {
+    font-family: "Jura", sans-serif; font-size: 9px;
+    letter-spacing: 3px; text-transform: uppercase;
+    margin-bottom: 5px;
+  }
+  .wgn-card-title {
+    font-family: "Oswald", sans-serif; font-size: 15px;
+    letter-spacing: 1px; font-weight: 600;
+    color: #1a1a2e; line-height: 1.2; margin-bottom: 8px;
+  }
+  .wgn-card-desc {
+    font-family: "Rokkitt", serif; font-size: 13px;
+    line-height: 1.6; color: #556; font-style: italic;
+  }
+  .wgn-card-footer {
+    padding: 10px 20px;
+    font-family: "Jura", sans-serif; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .wgn-card-footer span { transition: transform 0.2s; }
+  .wgn-card:hover .wgn-card-footer span { transform: translateX(3px); }
+
+  /* Card color variants */
+  .wgn-event .wgn-card-eyebrow { color: var(--green); }
+  .wgn-event .wgn-card-footer { background: rgba(0,133,0,0.06); color: var(--green); border-top: 1px solid rgba(0,133,0,0.12); }
+  .wgn-harvest .wgn-card-eyebrow { color: var(--orange); }
+  .wgn-harvest .wgn-card-footer { background: rgba(255,166,38,0.07); color: var(--orange); border-top: 1px solid rgba(255,166,38,0.15); }
+  .wgn-directory .wgn-card-eyebrow { color: var(--navy); }
+  .wgn-directory .wgn-card-footer { background: rgba(0,25,132,0.05); color: var(--navy); border-top: 1px solid rgba(0,25,132,0.1); }
+
+  /* ── SHARE PROMPT ── */
+  #sharePrompt {
+    background: white;
+    border: 2px solid var(--green);
+    border-radius: 6px;
+    margin: 20px 0;
+    overflow: hidden;
+    animation: fadeUp 0.5s ease both;
+    box-shadow: 0 8px 32px rgba(0,133,0,0.15);
+  }
+  .sp-inner {
+    padding: 24px 28px;
+    display: flex; align-items: center; gap: 20px; flex-wrap: wrap;
+  }
+  .sp-left {
+    display: flex; align-items: flex-start; gap: 16px;
+    flex: 1; min-width: 240px;
+  }
+  .sp-icon { font-size: 28px; color: var(--orange); line-height: 1; margin-top: 2px; flex-shrink: 0; }
+  .sp-title {
+    font-family: "Bebas Neue", sans-serif; font-size: 22px;
+    letter-spacing: 2px; color: var(--navy); margin-bottom: 4px;
+  }
+  .sp-sub {
+    font-family: "Rokkitt", serif; font-size: 13.5px;
+    line-height: 1.6; color: #556; font-style: italic;
+  }
+  .sp-actions { display: flex; flex-direction: column; gap: 8px; flex-shrink: 0; }
+  .sp-btn-primary {
+    background: var(--green); color: white;
+    font-family: "Oswald", sans-serif; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 22px; border-radius: 3px; border: none;
+    cursor: pointer; text-align: center; transition: background 0.2s; white-space: nowrap;
+  }
+  .sp-btn-primary:hover { background: var(--green-mid); }
+  .sp-btn-copy {
+    background: var(--navy); color: white;
+    font-family: "Oswald", sans-serif; font-size: 12px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 12px 22px; border: none; border-radius: 3px;
+    cursor: pointer; text-align: center; transition: background 0.2s; white-space: nowrap;
+  }
+  .sp-btn-copy:hover { background: var(--navy-mid); }
+  .sp-btn-secondary {
+    background: transparent; border: 1px solid rgba(0,25,132,0.2);
+    color: #889; font-family: "Jura", sans-serif; font-size: 10px;
+    letter-spacing: 2px; text-transform: uppercase;
+    padding: 9px 22px; cursor: pointer; border-radius: 3px;
+    transition: all 0.2s; text-align: center;
+  }
+  .sp-btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
+  .sp-profile-box { border-top: 1px solid rgba(0,133,0,0.2); background: #f9faf9; }
+  .sp-profile-label {
+    font-family: "Jura", sans-serif; font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--green); padding: 12px 28px 6px;
+  }
+  .sp-profile-header {
+    padding: 0 28px 10px; display: flex; flex-direction: column; gap: 3px;
+  }
+  .sp-profile-to { font-family: "Jura", sans-serif; font-size: 11px; letter-spacing: 1px; color: var(--navy); font-weight: 600; }
+  .sp-profile-subj { font-family: "Jura", sans-serif; font-size: 11px; letter-spacing: 1px; color: #556; }
+  .sp-profile-text {
+    font-family: "Courier New", monospace; font-size: 11px; line-height: 1.7;
+    color: #334; white-space: pre-wrap; word-break: break-word;
+    padding: 12px 28px 24px; margin: 0; max-height: 380px; overflow-y: auto;
+    border-top: 1px solid rgba(0,133,0,0.1); cursor: text; user-select: all;
+  }
+  .sp-profile-text::-webkit-scrollbar { width: 3px; }
+  .sp-profile-text::-webkit-scrollbar-thumb { background: rgba(0,133,0,0.3); }
+
+  /* ── RESULT MODAL ── */
   #resultModal {
     display: none; position: fixed; inset: 0;
     background: rgba(0,15,80,0.7); z-index: 100;
-    align-items: center; justify-content: center;
-    padding: 20px;
+    align-items: center; justify-content: center; padding: 20px;
   }
   #resultModal.open { display: flex; }
-
   .result-card {
-    background: white;
-    border-radius: 8px;
+    background: white; border-radius: 8px;
     max-width: 640px; width: 100%;
     max-height: 88vh; overflow-y: auto;
     box-shadow: 0 32px 80px rgba(0,0,0,0.3);
     animation: cardIn 0.3s ease both;
   }
-
-  /* Card Header — navy band */
   .rc-header {
-    background: var(--navy);
-    padding: 28px 36px;
-    display: flex; align-items: center; gap: 16px;
-    border-radius: 8px 8px 0 0;
+    background: var(--navy); padding: 28px 36px;
+    display: flex; align-items: center; gap: 16px; border-radius: 8px 8px 0 0;
   }
-  .rc-header-logo { width: 52px; height: 52px; object-fit: contain; }
-  .rc-header-text {}
   .rc-header-title {
     font-family: "Bebas Neue", sans-serif;
     font-size: 32px; letter-spacing: 3px; color: white; line-height: 1;
   }
   .rc-header-sub {
-    font-family: "Jura", sans-serif; font-size: 10px;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(255,255,255,0.45); margin-top: 4px;
+    font-family: "Jura", sans-serif; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.45); margin-top: 4px;
   }
   .rc-header-date {
     margin-left: auto; text-align: right;
     font-family: "Jura", sans-serif; font-size: 10px;
     letter-spacing: 2px; text-transform: uppercase; color: var(--orange);
   }
-
-  /* Card body */
   .rc-body { padding: 32px 36px; }
-
   .rc-section { margin-bottom: 24px; }
   .rc-section-label {
     font-family: "Oswald", sans-serif; font-size: 10px;
@@ -306,21 +590,19 @@
     color: var(--green); margin-bottom: 10px;
     display: flex; align-items: center; gap: 10px;
   }
-  .rc-section-label::after {
-    content: ""; flex: 1; height: 1px; background: rgba(0,133,0,0.2);
-  }
-
+  .rc-section-label::after { content: ""; flex: 1; height: 1px; background: rgba(0,133,0,0.2); }
+  .rc-section-label.orange-label { color: var(--orange); }
+  .rc-section-label.orange-label::after { background: rgba(255,166,38,0.2); }
+  .rc-section-label.navy-label { color: var(--navy); }
+  .rc-section-label.navy-label::after { background: rgba(0,25,132,0.15); }
   .rc-section-body {
     font-family: "Rokkitt", serif; font-size: 14.5px;
     line-height: 1.75; color: #334;
-    background: #f9faf9;
-    border-left: 3px solid var(--green);
+    background: #f9faf9; border-left: 3px solid var(--green);
     padding: 14px 18px; border-radius: 0 4px 4px 0;
   }
   .rc-section-body.orange-border { border-left-color: var(--orange); background: #fffaf4; }
   .rc-section-body.navy-border { border-left-color: var(--navy); background: #f5f7ff; }
-
-  /* Tier labels inside result */
   .rc-section-body .tier {
     font-family: "Oswald", sans-serif; font-size: 10px;
     letter-spacing: 3px; text-transform: uppercase; font-weight: 600;
@@ -337,13 +619,21 @@
   }
   .rc-section-body strong { color: var(--navy); }
   .rc-section-body em { color: var(--green); }
-
-  /* Card footer */
+  .rc-two-col {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 6px 24px; margin: 4px 0 10px; padding: 0; list-style: none;
+  }
+  .rc-two-col li {
+    font-family: "Rokkitt", serif; font-size: 13.5px;
+    line-height: 1.55; color: #334; padding: 3px 0 3px 16px; position: relative;
+  }
+  .rc-two-col li::before {
+    content: "•"; position: absolute; left: 0;
+    color: var(--orange); font-size: 14px; top: 2px;
+  }
   .rc-footer {
-    border-top: 1px solid #eef0f8;
-    padding: 20px 36px 28px;
-    background: #fafbff;
-    border-radius: 0 0 8px 8px;
+    border-top: 1px solid #eef0f8; padding: 20px 36px 28px;
+    background: #fafbff; border-radius: 0 0 8px 8px;
   }
   .rc-footer-cta {
     font-family: "Jura", sans-serif; font-size: 10px;
@@ -351,32 +641,89 @@
     color: #889; text-align: center; margin-bottom: 14px;
   }
   .rc-footer-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-
   .rc-btn-primary {
     background: var(--green); border: none; color: white;
-    font-family: "Oswald", sans-serif; font-size: 12px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 12px 28px; cursor: pointer; border-radius: 4px;
-    transition: background 0.2s;
+    font-family: "Oswald", sans-serif; font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 12px 28px; cursor: pointer;
+    border-radius: 4px; transition: background 0.2s;
   }
   .rc-btn-primary:hover { background: var(--green-mid); }
-
+  .rc-btn-print {
+    background: var(--navy); border: none; color: white;
+    font-family: "Oswald", sans-serif; font-size: 12px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 12px 28px; cursor: pointer;
+    border-radius: 4px; transition: background 0.2s;
+  }
+  .rc-btn-print:hover { background: var(--navy-mid); }
   .rc-btn-secondary {
     background: white; border: 1px solid rgba(0,25,132,0.2); color: #667;
-    font-family: "Jura", sans-serif; font-size: 11px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 12px 22px; cursor: pointer; border-radius: 4px;
-    transition: all 0.2s;
+    font-family: "Jura", sans-serif; font-size: 11px; letter-spacing: 2px;
+    text-transform: uppercase; padding: 12px 22px; cursor: pointer;
+    border-radius: 4px; transition: all 0.2s;
   }
   .rc-btn-secondary:hover { border-color: var(--navy); color: var(--navy); }
-
   .rc-watermark {
     text-align: center; margin-top: 14px;
     font-family: "Jura", sans-serif; font-size: 9px;
     letter-spacing: 3px; text-transform: uppercase; color: #bbc;
   }
 
-  /* FOOTER */
+  /* ── ENTRY GATE ── */
+  #entryGate {
+    position: fixed; inset: 0; background: rgba(0,10,50,0.92);
+    z-index: 200; display: flex; align-items: center; justify-content: center;
+    padding: 24px; animation: fadeIn 0.4s ease both;
+  }
+  .gate-card {
+    background: white; border-radius: 6px; max-width: 480px; width: 100%;
+    overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    animation: cardIn 0.4s 0.1s ease both;
+  }
+  .gate-header { background: var(--navy); padding: 28px 36px; }
+  .gate-eyebrow {
+    font-family: "Jura", sans-serif; font-size: 9px; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--orange); margin-bottom: 10px;
+  }
+  .gate-title {
+    font-family: "Bebas Neue", sans-serif; font-size: 36px;
+    letter-spacing: 2px; color: white; line-height: 1; margin-bottom: 6px;
+  }
+  .gate-sub {
+    font-family: "Rokkitt", serif; font-size: 14px; font-style: italic;
+    color: rgba(255,255,255,0.55); line-height: 1.5;
+  }
+  .gate-body { padding: 32px 36px; }
+  .gate-intro {
+    font-family: "Rokkitt", serif; font-size: 15px; line-height: 1.7;
+    color: #445; margin-bottom: 24px; font-style: italic;
+  }
+  .gate-field { margin-bottom: 18px; }
+  .gate-label {
+    font-family: "Oswald", sans-serif; font-size: 10px; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--green); display: block; margin-bottom: 7px;
+  }
+  .gate-input {
+    width: 100%; background: #f5f7ff;
+    border: 1px solid rgba(0,25,132,0.2); border-radius: 3px;
+    padding: 12px 16px; font-family: "Rokkitt", serif; font-size: 15px;
+    color: #1a1a2e; outline: none; transition: border-color 0.2s, background 0.2s;
+  }
+  .gate-input:focus { border-color: var(--green); background: #f0f8f0; }
+  .gate-input::placeholder { color: #aab; font-style: italic; }
+  .gate-btn {
+    width: 100%; background: var(--green); border: none; color: white;
+    font-family: "Oswald", sans-serif; font-size: 14px; letter-spacing: 3px;
+    text-transform: uppercase; padding: 15px 24px; cursor: pointer;
+    border-radius: 3px; margin-top: 8px; transition: background 0.2s, transform 0.1s;
+  }
+  .gate-btn:hover { background: var(--green-mid); }
+  .gate-btn:active { transform: scale(0.98); }
+  .gate-privacy {
+    font-family: "Jura", sans-serif; font-size: 10px; letter-spacing: 1px;
+    color: #aab; text-align: center; margin-top: 14px; line-height: 1.5;
+  }
+
+  /* ── FOOTER ── */
   .page-footer {
     text-align: center; margin-top: 52px;
     animation: fadeUp 1s 0.6s ease both;
@@ -395,447 +742,55 @@
     font-style: italic; color: #889; margin-top: 8px;
   }
 
-  /* ANIMATIONS */
-  @keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-18px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes msgIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes cardIn {
-    from { opacity: 0; transform: scale(0.96) translateY(12px); }
-    to { opacity: 1; transform: scale(1) translateY(0); }
-  }
-  @keyframes pulse {
-    0%, 80%, 100% { opacity: 0.3; transform: scale(0.8); }
-    40% { opacity: 1; transform: scale(1); }
-  }
+  /* ── ANIMATIONS ── */
+  @keyframes fadeDown { from { opacity:0; transform:translateY(-18px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeUp   { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes fadeIn   { from { opacity:0; } to { opacity:1; } }
+  @keyframes fadeOut  { from { opacity:1; } to { opacity:0; } }
+  @keyframes cardIn   { from { opacity:0; transform:scale(0.96) translateY(12px); } to { opacity:1; transform:scale(1) translateY(0); } }
+  @keyframes pulse    { 0%,80%,100% { opacity:0.3; transform:scale(0.8); } 40% { opacity:1; transform:scale(1); } }
 
-  @media (max-width: 520px) {
+  @media (max-width: 600px) {
     .container { padding: 28px 16px 60px; }
     .hero-title { font-size: 54px; }
-    .messages { max-height: 360px; }
-    .input-area { flex-direction: column; }
-    .send-btn { width: 100%; height: 46px; }
     .top-bar-tagline { display: none; }
+    .wgn-grid { grid-template-columns: 1fr; }
     .rc-header { padding: 20px 22px; }
     .rc-body { padding: 24px 22px; }
     .rc-footer { padding: 16px 22px 22px; }
     .result-card { max-height: 94vh; }
-  }
-
-
-  /* ===== ENTRY GATE ===== */
-  #entryGate {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 10, 50, 0.92);
-    z-index: 200;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-    animation: fadeIn 0.4s ease both;
-  }
-
-  .gate-card {
-    background: white;
-    border-radius: 6px;
-    max-width: 480px;
-    width: 100%;
-    overflow: hidden;
-    box-shadow: 0 32px 80px rgba(0,0,0,0.5);
-    animation: cardIn 0.4s 0.1s ease both;
-  }
-
-  .gate-header {
-    background: var(--navy);
-    padding: 28px 36px;
-  }
-
-  .gate-eyebrow {
-    font-family: "Jura", sans-serif;
-    font-size: 9px; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--orange);
-    margin-bottom: 10px;
-  }
-
-  .gate-title {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 36px; letter-spacing: 2px;
-    color: white; line-height: 1; margin-bottom: 6px;
-  }
-
-  .gate-sub {
-    font-family: "Rokkitt", serif;
-    font-size: 14px; font-style: italic;
-    color: rgba(255,255,255,0.55); line-height: 1.5;
-  }
-
-  .gate-body { padding: 32px 36px; }
-
-  .gate-intro {
-    font-family: "Rokkitt", serif;
-    font-size: 15px; line-height: 1.7;
-    color: #445; margin-bottom: 24px; font-style: italic;
-  }
-
-  .gate-field { margin-bottom: 18px; }
-
-  .gate-label {
-    font-family: "Oswald", sans-serif;
-    font-size: 10px; letter-spacing: 3px;
-    text-transform: uppercase; color: var(--green);
-    display: block; margin-bottom: 7px;
-  }
-
-  .gate-input {
-    width: 100%;
-    background: #f5f7ff;
-    border: 1px solid rgba(0,25,132,0.2);
-    border-radius: 3px;
-    padding: 12px 16px;
-    font-family: "Rokkitt", serif;
-    font-size: 15px; color: #1a1a2e;
-    outline: none;
-    transition: border-color 0.2s, background 0.2s;
-  }
-
-  .gate-input:focus {
-    border-color: var(--green);
-    background: #f0f8f0;
-  }
-
-  .gate-input::placeholder { color: #aab; font-style: italic; }
-
-  .gate-btn {
-    width: 100%;
-    background: var(--green);
-    border: none; color: white;
-    font-family: "Oswald", sans-serif;
-    font-size: 14px; letter-spacing: 3px;
-    text-transform: uppercase;
-    padding: 15px 24px;
-    cursor: pointer; border-radius: 3px;
-    margin-top: 8px;
-    transition: background 0.2s, transform 0.1s;
-  }
-
-  .gate-btn:hover { background: var(--green-mid); }
-  .gate-btn:active { transform: scale(0.98); }
-
-  .gate-privacy {
-    font-family: "Jura", sans-serif;
-    font-size: 10px; letter-spacing: 1px;
-    color: #aab; text-align: center;
-    margin-top: 14px; line-height: 1.5;
-  }
-
-  @keyframes fadeIn {
-    from { opacity: 0; } to { opacity: 1; }
-  }
-
-
-  /* ===== SHARE PROMPT BANNER ===== */
-  #sharePrompt {
-    background: white;
-    border: 2px solid var(--green);
-    border-radius: 6px;
-    margin: 20px 0;
-    overflow: hidden;
-    animation: fadeUp 0.5s ease both;
-    box-shadow: 0 8px 32px rgba(0,133,0,0.15);
-  }
-
-  .sp-inner {
-    padding: 24px 28px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .sp-left {
-    display: flex;
-    align-items: flex-start;
-    gap: 16px;
-    flex: 1;
-    min-width: 240px;
-  }
-
-  .sp-icon {
-    font-size: 28px;
-    color: var(--orange);
-    line-height: 1;
-    margin-top: 2px;
-    flex-shrink: 0;
-  }
-
-  .sp-title {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 22px;
-    letter-spacing: 2px;
-    color: var(--navy);
-    margin-bottom: 4px;
-  }
-
-  .sp-sub {
-    font-family: "Rokkitt", serif;
-    font-size: 13.5px;
-    line-height: 1.6;
-    color: #556;
-    font-style: italic;
-  }
-
-  .sp-actions {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-
-  .sp-btn-primary {
-    background: var(--green);
-    color: white;
-    font-family: "Oswald", sans-serif;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 12px 22px;
-    border-radius: 3px;
-    text-decoration: none;
-    text-align: center;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-
-  .sp-btn-primary:hover { background: var(--green-mid); }
-
-  .sp-btn-secondary {
-    background: transparent;
-    border: 1px solid rgba(0,25,132,0.2);
-    color: #889;
-    font-family: "Jura", sans-serif;
-    font-size: 10px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 9px 22px;
-    cursor: pointer;
-    border-radius: 3px;
-    transition: all 0.2s;
-    text-align: center;
-  }
-
-  .sp-btn-secondary:hover { border-color: var(--orange); color: var(--orange); }
-
-  @media (max-width: 520px) {
+    .rootwork-form, .rootwork-intro { padding-left: 18px; padding-right: 18px; }
+    .rootwork-submit-row { padding: 16px 18px; }
     .sp-inner { flex-direction: column; }
     .sp-actions { width: 100%; }
-    .sp-btn-primary, .sp-btn-secondary { width: 100%; }
+    .sp-btn-primary, .sp-btn-copy, .sp-btn-secondary { width: 100%; }
+    .rc-two-col { grid-template-columns: 1fr; }
   }
-
-
-
-  /* ===== REVEAL MY ROOTS HERO BUTTON ===== */
-  .action-btn-hero {
-    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
-    border: 2px solid var(--orange);
-    color: white;
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 20px;
-    letter-spacing: 3px;
-    padding: 14px 36px;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s;
-    box-shadow: 0 4px 20px rgba(0,25,132,0.3);
-    white-space: nowrap;
-  }
-  .action-btn-hero:hover {
-    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
-    border-color: var(--gold, #ffcc00);
-    box-shadow: 0 6px 28px rgba(0,25,132,0.45);
-    transform: translateY(-1px);
-  }
-  .action-btn-hero:active { transform: translateY(0); }
-
-  /* ===== SHARE PROFILE BOX ===== */
-  .sp-btn-copy {
-    background: var(--navy);
-    color: white;
-    font-family: "Oswald", sans-serif;
-    font-size: 12px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 12px 22px;
-    border: none;
-    border-radius: 3px;
-    cursor: pointer;
-    text-align: center;
-    transition: background 0.2s;
-    white-space: nowrap;
-  }
-  .sp-btn-copy:hover { background: var(--navy-mid); }
-
-  .sp-profile-box {
-    border-top: 1px solid rgba(0,133,0,0.2);
-    margin: 0;
-    background: #f9faf9;
-  }
-
-  .sp-profile-label {
-    font-family: "Jura", sans-serif;
-    font-size: 9px; letter-spacing: 4px;
-    text-transform: uppercase; color: var(--green);
-    padding: 12px 28px 6px;
-  }
-
-  .sp-profile-header {
-    padding: 0 28px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
-  }
-
-  .sp-profile-to,
-  .sp-profile-subj {
-    font-family: "Jura", sans-serif;
-    font-size: 11px; letter-spacing: 1px;
-    color: #556;
-  }
-
-  .sp-profile-to { color: var(--navy); font-weight: 600; }
-
-  .sp-profile-text {
-    font-family: "Courier New", monospace;
-    font-size: 11px;
-    line-height: 1.7;
-    color: #334;
-    white-space: pre-wrap;
-    word-break: break-word;
-    padding: 12px 28px 24px;
-    margin: 0;
-    max-height: 420px;
-    overflow-y: auto;
-    border-top: 1px solid rgba(0,133,0,0.1);
-    cursor: text;
-    user-select: all;
-  }
-
-  .sp-profile-text::-webkit-scrollbar { width: 3px; }
-  .sp-profile-text::-webkit-scrollbar-thumb { background: rgba(0,133,0,0.3); }
-
-  /* ===== PRINT STYLES ===== */
-  #printOnly { display: none; }
-
-  @media print {
-    body { background: white !important; }
-    .top-bar, .hero, .quick-prompts, .conversation-wrap,
-    .action-row, .page-footer, #resultModal { display: none !important; }
-    #printOnly { display: block !important; }
-    .container { padding: 0 !important; }
-  }
-
-  /* Print card layout */
-  .po-header {
-    background: #001984;
-    padding: 28px 36px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    color: white;
-  }
-  .po-header .rc-header-title {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 32px; letter-spacing: 3px; color: white; line-height: 1;
-  }
-  .po-header .rc-header-sub {
-    font-family: "Jura", sans-serif; font-size: 10px;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(255,255,255,0.5); margin-top: 4px;
-  }
-  .po-header .rc-header-date {
-    margin-left: auto; font-family: "Jura", sans-serif;
-    font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
-    color: #ffa626; text-align: right;
-  }
-  .po-body {
-    padding: 32px 36px;
-    background: white;
-  }
-  .po-watermark {
-    text-align: center;
-    margin: 0 36px 28px;
-    padding-top: 16px;
-    border-top: 1px solid #eee;
-    font-family: "Jura", sans-serif;
-    font-size: 9px; letter-spacing: 3px;
-    text-transform: uppercase; color: #aab;
-  }
-
-  /* Two-column bullet grid for needs */
-  .rc-two-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px 24px;
-    margin: 4px 0 10px;
-    padding: 0;
-    list-style: none;
-  }
-  .rc-two-col li {
-    font-family: "Rokkitt", serif;
-    font-size: 13.5px;
-    line-height: 1.55;
-    color: #334;
-    padding: 3px 0 3px 16px;
-    position: relative;
-  }
-  .rc-two-col li::before {
-    content: "•";
-    position: absolute;
-    left: 0;
-    color: var(--orange);
-    font-size: 14px;
-    top: 2px;
-  }
-
-  .rc-btn-print {
-    background: var(--navy); border: none; color: white;
-    font-family: "Oswald", sans-serif; font-size: 12px;
-    letter-spacing: 2px; text-transform: uppercase;
-    padding: 12px 28px; cursor: pointer; border-radius: 4px;
-    transition: background 0.2s;
-  }
-  .rc-btn-print:hover { background: var(--navy-mid); }
-
 </style>
 </head>
 <body>
-
 
 <!-- ENTRY GATE -->
 <div id="entryGate">
   <div class="gate-card">
     <div class="gate-header">
-      <div class="gate-eyebrow">The Greenhouse — Community Discovery</div>
+      <div class="gate-eyebrow">The Greenhouse Discovery Engine</div>
       <div class="gate-title">Before We Begin</div>
       <div class="gate-sub">Every grower in the village has a name. Tell us yours so we can grow together.</div>
     </div>
     <div class="gate-body">
-      <p class="gate-intro">What U share here helps us cultivate the Greenhouse — connecting people who have what others need, and building the village one root at a time.</p>
+      <p class="gate-intro">What you share here helps us cultivate the Greenhouse — connecting people who have what others need, and building the village one root at a time.</p>
       <div class="gate-field">
         <label class="gate-label" for="gateName">Your Name</label>
-        <input class="gate-input" id="gateName" type="text" placeholder="What do they call U?" autocomplete="name">
+        <input class="gate-input" id="gateName" type="text" placeholder="What do they call you?" autocomplete="name">
       </div>
       <div class="gate-field">
         <label class="gate-label" for="gateEmail">Your Email</label>
-        <input class="gate-input" id="gateEmail" type="email" placeholder="How can the village reach U?" autocomplete="email">
+        <input class="gate-input" id="gateEmail" type="email" placeholder="How can the village reach you?" autocomplete="email">
+      </div>
+      <div class="gate-field">
+        <label class="gate-label" for="gateLocation">Your City or Region</label>
+        <input class="gate-input" id="gateLocation" type="text" placeholder="Where are you rooted?" autocomplete="address-level2">
       </div>
       <button class="gate-btn" onclick="enterGreenhouse()">Enter The Greenhouse →</button>
       <p class="gate-privacy">Your information is kept within the Urban Design Outreach ecosystem.<br>We do not sell or share your data.</p>
@@ -847,16 +802,14 @@
 <div id="resultModal">
   <div class="result-card">
     <div class="rc-header">
-      <div class="rc-header-text">
+      <div>
         <div class="rc-header-title">U Discovery Profile</div>
         <div class="rc-header-sub">Urban Design Outreach — The Greenhouse</div>
       </div>
       <div class="rc-header-date" id="resultDate"></div>
     </div>
-
     <div class="rc-body" id="resultContent"></div>
-
-    <div class="rc-footer print-actions">
+    <div class="rc-footer">
       <div class="rc-footer-cta">Share this profile with your village or add it to the Greenhouse directory</div>
       <div class="rc-footer-actions">
         <button class="rc-btn-print" onclick="downloadCard()">Download Profile</button>
@@ -873,7 +826,6 @@
   <!-- TOP BAR -->
   <div class="top-bar">
     <div class="top-bar-logo">
-      
       <div class="logo-text-wrap">
         <span class="logo-udo">UDO</span>
         <span class="logo-full">Urban Design Outreach</span>
@@ -890,63 +842,184 @@
       <span class="do-green">U</span> DO?
     </div>
     <div class="green-rule"></div>
-    <p class="hero-sub">Every person carries something the village needs. Let's find out what's already growing in U.</p>
+    <p class="hero-sub">Every person carries something the village needs. Answer four questions and let's find out what's already growing in U.</p>
   </div>
 
-  <!-- QUICK PROMPTS -->
-  <div class="quick-prompts">
-    <button class="quick-btn" onclick="quickPrompt('I want to discover what I can do with my skills and talents')">Discover my possibilities</button>
-    <button class="quick-btn" onclick="quickPrompt('I want to share what I need help with')">Share what I need</button>
-    <button class="quick-btn" onclick="quickPrompt('I want to explore both what I do and what I need')">Full discovery</button>
-    <button class="quick-btn" onclick="quickPrompt('I am not sure what I have to offer')">Not sure yet</button>
-  </div>
-
-  <!-- CONVERSATION -->
-  <div class="conversation-wrap">
-    <div class="conv-header">
+  <!-- ROOT WORK FORM -->
+  <div class="rootwork-wrap">
+    <div class="rootwork-header">
       <div class="dot d1"></div>
       <div class="dot d2"></div>
       <div class="dot d3"></div>
-      <span class="conv-header-label">Live Discovery Session</span>
+      <span class="rootwork-header-label">Root Work Discovery</span>
     </div>
 
-    <div class="messages" id="messages">
-      <div class="msg msg-ai">
-        <div class="msg-label">The Greenhouse</div>
-        <div class="msg-bubble">
-          Welcome. U have arrived at the right place.<br><br>
-          This is a space to discover what U carry — your skills, your talents, your resources — and to see possibilities U may not have recognized yet. We will also explore what U need, and how the village around U can help.<br><br>
-          <strong>So let us begin.</strong><br><br>
-          Tell me: <em>What do U do?</em> Share anything — a job, a craft, a gift, a passion, something U do for others, something U do just because U love it. There is no wrong answer here. Every seed counts.
+    <p class="rootwork-intro">
+      The Greenhouse Discovery Engine is built on four questions — the same four questions that have always lived at the heart of meaningful work. Answer them honestly, in whatever words feel true. There is no right answer. Every seed counts.
+    </p>
+
+    <div class="rootwork-form">
+
+      <div class="rw-field">
+        <div class="rw-field-header">
+          <span class="rw-number">1</span>
+          <div class="rw-label-wrap">
+            <label class="rw-label lv1" for="q1">What Makes U Come Alive</label>
+            <span class="rw-hint">The thing U do and lose track of time. What lights U up — a job, a craft, a gift, a passion.</span>
+          </div>
         </div>
+        <textarea class="rw-input" id="q1" placeholder="I come alive when I'm..." rows="2" oninput="autoResize(this)"></textarea>
       </div>
+
+      <div class="rw-divider"></div>
+
+      <div class="rw-field">
+        <div class="rw-field-header">
+          <span class="rw-number">2</span>
+          <div class="rw-label-wrap">
+            <label class="rw-label lv2" for="q2">What U Were Built to Do</label>
+            <span class="rw-hint">The gifts people always come to U for without being asked. Your natural genius.</span>
+          </div>
+        </div>
+        <textarea class="rw-input lv2" id="q2" placeholder="People always come to me for..." rows="2" oninput="autoResize(this)"></textarea>
+      </div>
+
+      <div class="rw-divider"></div>
+
+      <div class="rw-field">
+        <div class="rw-field-header">
+          <span class="rw-number">3</span>
+          <div class="rw-label-wrap">
+            <label class="rw-label lv3" for="q3">What the Village Is Hungry For</label>
+            <span class="rw-hint">The gap you see in your community, your block, your ecosystem that only you can fill.</span>
+          </div>
+        </div>
+        <textarea class="rw-input lv3" id="q3" placeholder="In my community, people need..." rows="2" oninput="autoResize(this)"></textarea>
+      </div>
+
+      <div class="rw-divider"></div>
+
+      <div class="rw-field">
+        <div class="rw-field-header">
+          <span class="rw-number">4</span>
+          <div class="rw-label-wrap">
+            <label class="rw-label lv4" for="q4">What Can Grow from U</label>
+            <span class="rw-hint">What U would love to offer — for income, for trade, for love. What wants to be harvested.</span>
+          </div>
+        </div>
+        <textarea class="rw-input lv4" id="q4" placeholder="I'd love to offer the world..." rows="2" oninput="autoResize(this)"></textarea>
+      </div>
+
+    </div>
+
+    <div class="rootwork-submit-row">
+      <span class="rootwork-submit-note">The Greenhouse will reflect your roots back to U</span>
+      <button class="plant-btn" id="plantBtn" onclick="plantIt()">Plant It →</button>
     </div>
 
     <div class="typing" id="typing">
       <div class="typing-dot"></div>
       <div class="typing-dot"></div>
       <div class="typing-dot"></div>
-      <span class="typing-text">Cultivating your response...</span>
+      <span class="typing-text">Cultivating your root work profile...</span>
     </div>
+  </div>
 
-    <div class="input-area">
-      <textarea
-        class="input-field"
-        id="userInput"
-        placeholder="Tell the village what U do, what U make, what U love..."
-        rows="1"
-        onkeydown="handleKey(event)"
-        oninput="autoResize(this)"
-      ></textarea>
-      <button class="send-btn" id="sendBtn" onclick="sendMessage()">Plant It</button>
+  <!-- RESPONSE PANEL -->
+  <div class="response-wrap" id="responseWrap">
+    <div class="response-header">
+      <div class="dot d1" style="background:rgba(255,255,255,0.5)"></div>
+      <div class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5)"></div>
+      <div class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div>
+      <span class="response-header-label">The Greenhouse Responds</span>
+    </div>
+    <div class="response-body" id="responseBody"></div>
+  </div>
+
+  <!-- NEEDS FOLLOW-UP -->
+  <div class="needs-wrap" id="needsWrap">
+    <div class="needs-header">
+      <div class="dot d1" style="background:rgba(255,255,255,0.5)"></div>
+      <div class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.5)"></div>
+      <div class="dot" style="width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.3)"></div>
+      <span class="needs-header-label">One More Question</span>
+    </div>
+    <div class="needs-question">
+      <strong>And what do you need?</strong><br>
+      What would make the biggest difference right now — a skill, a connection, a resource, a space, a partner, a push? The village is listening.
+    </div>
+    <div class="needs-input-area">
+      <textarea class="needs-input" id="needsInput" placeholder="Right now I need..." rows="2"
+        onkeydown="handleNeedsKey(event)" oninput="autoResize(this)"></textarea>
+      <button class="needs-send-btn" id="needsSendBtn" onclick="sendNeeds()">Send It</button>
+    </div>
+    <div class="needs-typing" id="needsTyping">
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <div class="typing-dot"></div>
+      <span class="typing-text">The village is responding...</span>
+    </div>
+    <div class="needs-response" id="needsResponse"></div>
+    <div class="needs-disclaimer" id="needsDisclaimer">
+      <span class="needs-disclaimer-icon">※</span>
+      Organizations and resources listed above are suggestions based on your location and needs. Some may have changed, moved, or closed since this tool was last updated — please verify that any organization is currently active before reaching out. The Greenhouse is always growing; what matters most is that you keep seeking.
     </div>
   </div>
 
   <!-- ACTIONS -->
-  <div class="action-row">
+  <div class="action-row" id="actionRow">
     <button class="action-btn-hero" onclick="openResultModal()">✦ Reveal My Roots</button>
-    <button class="action-btn" onclick="resetConversation()">↺ Start Over</button>
+    <button class="action-btn" onclick="resetAll()">↺ Plant a New Seed</button>
     <button class="action-btn" onclick="window.open('https://urbandesignoutreach.com','_blank')">Join The Greenhouse →</button>
+  </div>
+
+  <!-- WHAT GROWS NEXT -->
+  <div id="whatGrowsNext">
+    <div class="wgn-header">
+      <div class="wgn-title">What Grows Next</div>
+      <div class="wgn-rule"></div>
+    </div>
+    <div class="wgn-grid">
+
+      <div class="wgn-card wgn-event" onclick="window.open('https://www.eventbrite.com/o/50576392733','_blank')">
+        <div class="wgn-card-top">
+          <span class="wgn-card-icon">🌱</span>
+          <div class="wgn-card-eyebrow">Live Event — Monthly</div>
+          <div class="wgn-card-title">What Do We Do? Networking</div>
+          <div class="wgn-card-desc">Bring this profile into the room. Meet the village in person at Wonderful World Coffee & Tea in Avondale Estates. Say what you do. Hear what others need. Watch the connections grow.</div>
+        </div>
+        <div class="wgn-card-footer">
+          <span>See All Upcoming Events</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="wgn-card wgn-harvest" onclick="window.open('https://calendly.com/urbandesignoutreach/30min','_blank')">        <div class="wgn-card-top">
+          <span class="wgn-card-icon">🌳</span>
+          <div class="wgn-card-eyebrow">Harvest Tier — $75</div>
+          <div class="wgn-card-title">1-on-1 with Valeasia</div>
+          <div class="wgn-card-desc">A 30-minute consultation with Valeasia Walker plus real, curated introductions from a 150+ person network. This is not networking — this is cultivation. Limited to 10 per cycle.</div>
+        </div>
+        <div class="wgn-card-footer">
+          <span>Book Your Harvest Session</span>
+          <span>→</span>
+        </div>
+      </div>
+
+      <div class="wgn-card wgn-directory" onclick="window.open('https://airtable.com/appZ5s2pTtxwXOfwZ/pagdAuNJVBdhFHavV/form','_blank')">
+        <div class="wgn-card-top">
+          <span class="wgn-card-icon">🏡</span>
+          <div class="wgn-card-eyebrow">The Greenhouse Directory</div>
+          <div class="wgn-card-title">Join the Village Roster</div>
+          <div class="wgn-card-desc">150+ community members have documented their skills and needs. Add your profile to the directory so the village can find you — and you can find them — long after today's session ends.</div>
+        </div>
+        <div class="wgn-card-footer">
+          <span>Join the Directory</span>
+          <span>→</span>
+        </div>
+      </div>
+
+    </div>
   </div>
 
   <!-- FOOTER -->
@@ -959,321 +1032,294 @@
 </div>
 
 <script>
-  let conversationHistory = [];
+  let userName = "";
+  let userEmail = "";
+  let userLocation = "";
+  let formAnswers = {};
+  let profileResponse = "";
+  let needsAnswer = "";
+  let needsResponse = "";
+  let submitted = false;
 
-  const SYSTEM_PROMPT = `You are the voice of The Greenhouse, the community discovery engine of Urban Design Outreach, a cultural infrastructure practice founded by Valeasia Walker in Atlanta, Georgia.
+  function buildSystemPrompt() {
+    const loc = userLocation ? `The person is located in ${userLocation}. All opportunity suggestions, organizations, programs, and resources should be specific to this location wherever possible. Prioritize local and regional resources over national ones.` : `The person's location is not specified. Keep suggestions broadly applicable.`;
+    return `You are the voice of The Greenhouse, the community discovery engine of Urban Design Outreach, a cultural infrastructure practice founded by Valeasia Walker in Atlanta, Georgia.
 
-Your purpose is to help people discover the full value of what they carry, their skills, talents, gifts, and resources, and to see possibilities they have not yet recognized. You also help people articulate what they need, and connect both to a broader ecosystem of people, industries, and opportunities.
+Write in warm, natural prose. Use "you" and "your" when addressing the person — not "U". The "U" styling belongs in the tool's headings and labels only, not in full sentences.
 
-IMPORTANT: Always use "U" instead of "you" or "You" when referring to the person. This is intentional brand language.
+${loc}
 
-CONVERSATION FLOW:
-1. The person shares what they do.
-2. Respond with THREE TIERS using these exact HTML tags:
-<div class="tier tier-easy">Easy Wins</div><ul><li>item</li></ul>
-<div class="tier tier-stretch">Stretch Goals</div><ul><li>item</li></ul>
-<div class="tier tier-aspirational">Aspirational Reach</div><ul><li>item</li></ul>
-3. After tiers, write a warm paragraph about WHO NEEDS WHAT U DO.
-4. Ask: "And what do U need?"
-5. When they share needs, give many specific actionable suggestions.
+The person has filled out The Greenhouse Discovery Engine form with four Root Work questions. These map to a framework called Root Work — UDO's version of discovering purpose:
 
-TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: cultivate, grow, root, seed, harvest, village, ecosystem. Make every person feel that what they carry matters. If unsure what they offer, ask gentle discovery questions.`;
+  Question 1 "What Makes You Come Alive" = What they love and what ignites them
+  Question 2 "What You Were Built to Do" = Their natural gifts and practiced mastery
+  Question 3 "What the Village Is Hungry For" = Where the world's real needs meet them
+  Question 4 "What Can Grow from You" = What they can offer, earn from, and sustain
 
-  function addMessage(role, content) {
-    const messages = document.getElementById("messages");
-    const div = document.createElement("div");
-    div.className = "msg msg-" + (role === "user" ? "user" : "ai");
-    const label = document.createElement("div");
-    label.className = "msg-label";
-    label.textContent = role === "user" ? "U" : "The Greenhouse";
-    const bubble = document.createElement("div");
-    bubble.className = "msg-bubble";
-    bubble.innerHTML = content;
-    div.appendChild(label);
-    div.appendChild(bubble);
-    messages.appendChild(div);
-    messages.scrollTop = messages.scrollHeight;
+Your response structure must follow this EXACT format using these HTML tags:
+
+<div class="tier tier-easy">Easy Wins</div>
+<ul><li>3-4 specific, immediately actionable opportunities based on their answers and location</li></ul>
+
+<div class="tier tier-stretch">Stretch Goals</div>
+<ul><li>3-4 bigger moves that require some development but are realistic in their context</li></ul>
+
+<div class="tier tier-aspirational">Aspirational Reach</div>
+<ul><li>3-4 bold visions — where their Root Work could take them if they let it grow</li></ul>
+
+<div class="tier tier-human">Purely Human Opportunities</div>
+<ul><li>3-4 opportunities that no AI or algorithm can replace — human presence, human touch, human trust. Teaching, mentoring, convening, ceremony, caregiving, oral history, trades, street-level commerce, sacred service. Frame this with HOPE: these are not fallback options — they are irreplaceable infrastructure. The world needs these more than ever.</li></ul>
+
+After the four tiers, write 2-3 warm sentences identifying where their Root Work lives — what lights them up AND what the world around them needs. Use the language of the soil: what is ready to germinate, what has deep roots, what is ready to harvest.
+
+Then write one warm sentence about who in the village is waiting for exactly what they carry.
+
+TONE: Warm, direct, visionary. Use horticulture language naturally: cultivate, grow, root, seed, harvest, village, ecosystem, germinate, canopy. Make every person feel that what they carry matters deeply.`;
   }
 
-  async function sendMessage(overrideText) {
-    const input = document.getElementById("userInput");
-    const sendBtn = document.getElementById("sendBtn");
-    const text = overrideText || input.value.trim();
-    if (!text) return;
-    input.value = "";
-    autoResize(input);
-    sendBtn.disabled = true;
-    addMessage("user", text);
-    conversationHistory.push({ role: "user", content: text });
-    const typing = document.getElementById("typing");
-    typing.classList.add("active");
-    document.getElementById("messages").scrollTop = 99999;
-    try {
-      // Call our secure Vercel backend — API key never touches the browser
-      const API_URL = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:'
-        ? 'https://udo-greenhouse.vercel.app/api/chat'
-        : '/api/chat';
+  function buildNeedsPrompt() {
+    const loc = userLocation ? `The person is located in ${userLocation}. Prioritize resources, organizations, programs, and connections that are specific to this location. Name actual local organizations, neighborhood networks, and regional programs where possible. Do not suggest resources from other cities or regions unless no local equivalent exists.` : `The person's location is not specified. Offer broadly applicable resources.`;
+    return `You are the voice of The Greenhouse, the community discovery engine of Urban Design Outreach. The person has completed their Root Work profile and shared what they need.
 
-      const response = await fetch(API_URL, {
+Write in warm, natural prose. Use "you" and "your" when addressing the person — not "U". The "U" styling belongs in headings and labels only.
+
+${loc}
+
+Give 6-10 specific, actionable suggestions for how the village and ecosystem can meet this need. Mix digital and human resources. Always include:
+  - At least 2-3 in-person or human-centered local resources (community groups, neighborhood networks, local mentors, mutual aid organizations, in-person learning opportunities specific to their location)
+  - Specific named organizations, programs, or types of people to seek out in their area
+  - At least one reference to the UDO ecosystem itself (What Do We Do? monthly networking events in Atlanta's Avondale Estates, the Greenhouse network, or Valeasia Walker's 150+ person community)
+
+Format as a clean bulleted list using <ul><li> tags. Keep each item specific and actionable — not generic advice. End with one warm closing sentence in the UDO voice.
+
+IMPORTANT: Only suggest organizations you are confident exist in the person's location. Do not invent organizations. If you are uncertain whether a specific organization is still active, describe the type of organization to seek rather than naming one that may have closed.
+
+TONE: Warm, practical, rooted. Every suggestion should feel like it came from a trusted neighbor who knows the area, not a search engine.`;
+  }
+
+  // ── ENTRY GATE ──
+  function enterGreenhouse() {
+    const name = document.getElementById("gateName").value.trim();
+    const email = document.getElementById("gateEmail").value.trim();
+    const location = document.getElementById("gateLocation").value.trim();
+    if (!name) { highlight("gateName"); return; }
+    if (!email || !email.includes("@")) { highlight("gateEmail"); return; }
+    if (!location) { highlight("gateLocation"); return; }
+    userName = name;
+    userEmail = email;
+    userLocation = location;
+    document.getElementById("entryGate").style.animation = "fadeOut 0.3s ease forwards";
+    setTimeout(() => {
+      document.getElementById("entryGate").style.display = "none";
+      document.getElementById("q1").focus();
+    }, 300);
+  }
+
+  function highlight(id) {
+    const el = document.getElementById(id);
+    el.focus();
+    el.style.borderColor = "var(--orange)";
+    setTimeout(() => el.style.borderColor = "", 2000);
+  }
+
+  document.addEventListener("keydown", function(e) {
+    const gate = document.getElementById("entryGate");
+    if (gate && gate.style.display !== "none" && e.key === "Enter") enterGreenhouse();
+  });
+
+  // ── FORM SUBMIT ──
+  async function plantIt() {
+    const q1 = document.getElementById("q1").value.trim();
+    const q2 = document.getElementById("q2").value.trim();
+    const q3 = document.getElementById("q3").value.trim();
+    const q4 = document.getElementById("q4").value.trim();
+
+    if (!q1 && !q2 && !q3 && !q4) {
+      document.getElementById("q1").focus();
+      document.getElementById("q1").style.borderColor = "var(--orange)";
+      setTimeout(() => document.getElementById("q1").style.borderColor = "", 2000);
+      return;
+    }
+
+    formAnswers = { q1, q2, q3, q4 };
+
+    const userMessage = [
+      `Location: ${userLocation}`,
+      q1 ? `What Makes Me Come Alive: ${q1}` : "",
+      q2 ? `What I Was Built to Do: ${q2}` : "",
+      q3 ? `What the Village Is Hungry For: ${q3}` : "",
+      q4 ? `What Can Grow from Me: ${q4}` : "",
+    ].filter(Boolean).join("\n\n");
+
+    const plantBtn = document.getElementById("plantBtn");
+    const typing = document.getElementById("typing");
+    plantBtn.disabled = true;
+    typing.classList.add("active");
+
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          system: SYSTEM_PROMPT,
-          messages: conversationHistory
+          model: "claude-sonnet-4-6",
+          max_tokens: 1600,
+          system: buildSystemPrompt(),
+          messages: [{ role: "user", content: userMessage }]
         })
       });
       const data = await response.json();
-      console.log("API response:", JSON.stringify(data).substring(0, 300));
-      const reply = data.content?.[0]?.text || data.error?.message || "Something went quiet. Please try again.";
-      conversationHistory.push({ role: "assistant", content: reply });
-      typing.classList.remove("active");
-      addMessage("ai", reply);
+      const reply = data.content?.[0]?.text || data.error?.message || "Something went quiet in the Greenhouse. Please try again.";
+      profileResponse = reply;
 
-      // Auto-submit after second AI response (needs have been shared)
-      const aiCount = conversationHistory.filter(m => m.role === "assistant").length;
-      if (aiCount >= 2 && !submitted) {
-        setTimeout(submitToGreenhouse, 800);
-      }
+      typing.classList.remove("active");
+      plantBtn.disabled = false;
+
+      // Show response
+      const responseWrap = document.getElementById("responseWrap");
+      const responseBody = document.getElementById("responseBody");
+      responseBody.innerHTML = cleanMarkdown(reply);
+      responseWrap.classList.add("active");
+
+      // Show needs panel
+      setTimeout(() => {
+        document.getElementById("needsWrap").classList.add("active");
+        document.getElementById("needsWrap").scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 600);
+
     } catch (err) {
       typing.classList.remove("active");
-      addMessage("ai", "Something interrupted the connection. Please try again — the village is listening.");
-      console.error("API error:", err);
+      plantBtn.disabled = false;
+      const responseWrap = document.getElementById("responseWrap");
+      document.getElementById("responseBody").innerHTML = `Something interrupted the connection (${err.message || err}). Please try again — the village is listening.`;
+      responseWrap.classList.add("active");
     }
-    sendBtn.disabled = false;
-    input.focus();
   }
 
-  function quickPrompt(text) { sendMessage(text); }
+  // ── NEEDS SUBMIT ──
+  async function sendNeeds() {
+    const input = document.getElementById("needsInput");
+    const text = input.value.trim();
+    if (!text) return;
+    needsAnswer = text;
 
-  function handleKey(e) {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+    const sendBtn = document.getElementById("needsSendBtn");
+    const typing = document.getElementById("needsTyping");
+    sendBtn.disabled = true;
+    input.disabled = true;
+    typing.classList.add("active");
+
+    const context = [
+      `Location: ${userLocation}`,
+      formAnswers.q1 ? `What Makes Them Come Alive: ${formAnswers.q1}` : "",
+      formAnswers.q2 ? `What They Were Built to Do: ${formAnswers.q2}` : "",
+      formAnswers.q3 ? `What the Village Is Hungry For: ${formAnswers.q3}` : "",
+      formAnswers.q4 ? `What Can Grow from Them: ${formAnswers.q4}` : "",
+      `What They Need: ${text}`
+    ].filter(Boolean).join("\n\n");
+
+    try {
+      const response = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-6",
+          max_tokens: 1000,
+          system: buildNeedsPrompt(),
+          messages: [{ role: "user", content: context }]
+        })
+      });
+      const data = await response.json();
+      const reply = data.content?.[0]?.text || "Something went quiet. Please try again.";
+      needsResponse = reply;
+
+      typing.classList.remove("active");
+
+      const nr = document.getElementById("needsResponse");
+      nr.innerHTML = cleanMarkdown(reply);
+      nr.classList.add("active");
+      document.getElementById("needsDisclaimer").classList.add("active");
+
+      // Show What Grows Next + share prompt
+      setTimeout(() => {
+        document.getElementById("whatGrowsNext").classList.add("active");
+        if (!submitted) {
+          showSharePrompt();
+          submitted = true;
+        }
+        document.getElementById("whatGrowsNext").scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 500);
+
+    } catch (err) {
+      typing.classList.remove("active");
+      sendBtn.disabled = false;
+      input.disabled = false;
+      document.getElementById("needsResponse").innerHTML = `Something interrupted — please try again.`;
+      document.getElementById("needsResponse").classList.add("active");
+    }
   }
 
+  function handleNeedsKey(e) {
+    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendNeeds(); }
+  }
+
+  // ── CLEAN MARKDOWN ──
+  function cleanMarkdown(html) {
+    const div = document.createElement("div");
+    div.innerHTML = html;
+    function processNode(node) {
+      if (node.nodeType === 3) {
+        const cleaned = node.textContent
+          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+          .replace(/__(.+?)__/g, '<em>$1</em>');
+        if (cleaned !== node.textContent) {
+          const span = document.createElement("span");
+          span.innerHTML = cleaned;
+          node.parentNode.replaceChild(span, node);
+        }
+      } else if (node.childNodes) {
+        Array.from(node.childNodes).forEach(processNode);
+      }
+    }
+    processNode(div);
+    return div.innerHTML;
+  }
+
+  // ── AUTO RESIZE TEXTAREA ──
   function autoResize(el) {
     el.style.height = "auto";
     el.style.height = Math.min(el.scrollHeight, 140) + "px";
   }
 
-  function resetConversation() {
-    conversationHistory = [];
-    document.getElementById("messages").innerHTML = `
-      <div class="msg msg-ai">
-        <div class="msg-label">The Greenhouse</div>
-        <div class="msg-bubble">
-          Welcome back. Every conversation is a new seed.<br><br>
-          Tell me again, or tell me something new: <em>What do U do?</em>
-        </div>
-      </div>`;
-  }
-
-  function openResultModal() {
-    const msgs = document.querySelectorAll(".msg");
-    if (msgs.length <= 1) {
-      alert("Start your discovery session first, then copy your results.");
-      return;
-    }
-
-    // Set date
-    document.getElementById("resultDate").textContent = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
-
-    const rc = document.getElementById("resultContent");
-    rc.innerHTML = "";
-
-    let sections = [];
-    let userMessages = [];
-    let aiMessages = [];
-
-    msgs.forEach((m, i) => {
-      if (i === 0) return;
-      const bubble = m.querySelector(".msg-bubble");
-      if (!bubble) return;
-      if (m.classList.contains("msg-user")) userMessages.push(bubble.innerText.trim());
-      if (m.classList.contains("msg-ai")) aiMessages.push(bubble.innerHTML);
+  // ── RESET ──
+  function resetAll() {
+    ["q1","q2","q3","q4"].forEach(id => {
+      const el = document.getElementById(id);
+      el.value = "";
+      el.style.height = "";
     });
-
-    // What U Do
-    if (userMessages[0]) {
-      sections.push({ label: "What U Do", content: userMessages[0], cls: "" });
-    }
-    // U Possibilities (first AI response after opening)
-    if (aiMessages[0]) {
-      sections.push({ label: "U Possibilities — Three Tiers", content: aiMessages[0], cls: "" });
-    }
-    // What U Need
-    if (userMessages[1]) {
-      sections.push({ label: "What U Need", content: userMessages[1], cls: "orange-border" });
-    }
-    // Resources / suggestions
-    if (aiMessages[1]) {
-      sections.push({ label: "Village Resources for U", content: aiMessages[1], cls: "navy-border", twoCol: true });
-    }
-    // Additional AI messages
-    for (let i = 2; i < aiMessages.length; i++) {
-      sections.push({ label: "The Greenhouse Says", content: aiMessages[i], cls: "navy-border", twoCol: true });
-    }
-
-    sections.forEach(s => {
-      const sec = document.createElement("div");
-      sec.className = "rc-section";
-
-      // For "Village Resources" and "What U Need" AI responses — extract list items and render as 2-col grid
-      let bodyHTML = s.content;
-      if (s.twoCol) {
-        // Parse all <li> items from the AI HTML
-        const tempDiv = document.createElement("div");
-        tempDiv.innerHTML = s.content;
-        const allLi = tempDiv.querySelectorAll("li");
-        if (allLi.length > 0) {
-          let gridHTML = '<ul class="rc-two-col">';
-          allLi.forEach(li => { gridHTML += `<li>${li.innerText}</li>`; });
-          gridHTML += '</ul>';
-          // Also keep any paragraph text (non-list content)
-          const paras = [];
-          tempDiv.childNodes.forEach(node => {
-            if (node.nodeType === 3 && node.textContent.trim()) paras.push(`<p style="margin-bottom:10px;font-size:14px;line-height:1.7;color:#334;">${node.textContent.trim()}</p>`);
-            if (node.nodeName === 'P' || node.nodeName === 'BR') paras.push(node.outerHTML || '<br>');
-          });
-          bodyHTML = paras.join('') + gridHTML;
-        }
-      }
-
-      sec.innerHTML = `
-        <div class="rc-section-label">${s.label}</div>
-        <div class="rc-section-body ${s.cls}">${bodyHTML}</div>`;
-      rc.appendChild(sec);
-    });
-
-    document.getElementById("resultModal").classList.add("open");
+    document.getElementById("responseWrap").classList.remove("active");
+    document.getElementById("needsWrap").classList.remove("active");
+    document.getElementById("needsInput").value = "";
+    document.getElementById("needsInput").disabled = false;
+    document.getElementById("needsSendBtn").disabled = false;
+    document.getElementById("needsResponse").classList.remove("active");
+    document.getElementById("needsResponse").innerHTML = "";
+    document.getElementById("needsDisclaimer").classList.remove("active");
+    document.getElementById("whatGrowsNext").classList.remove("active");
+    document.getElementById("plantBtn").disabled = false;
+    const sp = document.getElementById("sharePrompt");
+    if (sp) sp.remove();
+    submitted = false;
+    formAnswers = {};
+    profileResponse = "";
+    needsAnswer = "";
+    needsResponse = "";
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
-  function closeModal() {
-    document.getElementById("resultModal").classList.remove("open");
-  }
-
-  function copyResultText() {
-    const msgs = document.querySelectorAll(".msg");
-    let text = "U DISCOVERY PROFILE\nUrban Design Outreach — The Greenhouse\nwww.urbandesignoutreach.com\n";
-    text += new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }) + "\n\n";
-    text += "—————————————————————————\n\n";
-    msgs.forEach((m, i) => {
-      if (i === 0) return;
-      const label = m.querySelector(".msg-label")?.textContent || "";
-      const bubble = m.querySelector(".msg-bubble");
-      if (!bubble) return;
-      text += label.toUpperCase() + ":\n";
-      text += (bubble.innerText || bubble.textContent).trim() + "\n\n";
-    });
-    text += "—————————————————————————\n";
-    text += "Visit urbandesignoutreach.com to join The Greenhouse.\n";
-    text += "\"We animate the spaces between people.\"";
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(text).then(() => {
-        const btn = document.getElementById("copyBtn");
-        const orig = btn.textContent;
-        btn.textContent = "Copied ✓";
-        btn.style.background = "#004d00";
-        setTimeout(() => { btn.textContent = orig; btn.style.background = ""; }, 2500);
-      }).catch(() => fallbackCopy(text));
-    } else {
-      fallbackCopy(text);
-    }
-  }
-
-  function fallbackCopy(text) {
-    const ta = document.createElement("textarea");
-    ta.value = text;
-    ta.style.cssText = "position:fixed;opacity:0;top:0;left:0;";
-    document.body.appendChild(ta);
-    ta.focus(); ta.select();
-    try {
-      document.execCommand("copy");
-      const btn = document.getElementById("copyBtn");
-      btn.textContent = "Copied ✓";
-      setTimeout(() => btn.textContent = "Copy Profile Text", 2500);
-    } catch(e) {
-      alert("To copy: press Ctrl+A then Ctrl+C in the text area.");
-    }
-    document.body.removeChild(ta);
-  }
-
-
-  // ===== USER INFO =====
-  let userName = "";
-  let userEmail = "";
-
-  // ===== ENTRY GATE =====
-  function enterGreenhouse() {
-    const name = document.getElementById("gateName").value.trim();
-    const email = document.getElementById("gateEmail").value.trim();
-
-    if (!name) {
-      document.getElementById("gateName").focus();
-      document.getElementById("gateName").style.borderColor = "var(--orange)";
-      return;
-    }
-    if (!email || !email.includes("@")) {
-      document.getElementById("gateEmail").focus();
-      document.getElementById("gateEmail").style.borderColor = "var(--orange)";
-      return;
-    }
-
-    userName = name;
-    userEmail = email;
-
-    // Update greeting in first message
-    const firstBubble = document.querySelector(".msg-ai .msg-bubble");
-    if (firstBubble) {
-      firstBubble.innerHTML = `Welcome, <strong>${name}</strong>. U have arrived at the right place.<br><br>
-        This is a space to discover what U carry — your skills, your talents, your resources — and to see possibilities U may not have recognized yet. We will also explore what U need, and how the village around U can help.<br><br>
-        <strong>So let us begin.</strong><br><br>
-        Tell me: <em>What do U do?</em> Share anything — a job, a craft, a gift, a passion, something U do for others, something U do just because U love it. There is no wrong answer here. Every seed counts.`;
-    }
-
-    document.getElementById("entryGate").style.animation = "fadeOut 0.3s ease forwards";
-    setTimeout(() => {
-      document.getElementById("entryGate").style.display = "none";
-      document.getElementById("userInput").focus();
-    }, 300);
-  }
-
-  // Allow Enter key on gate
-  document.addEventListener("keydown", function(e) {
-    const gate = document.getElementById("entryGate");
-    if (gate && gate.style.display !== "none" && e.key === "Enter") {
-      enterGreenhouse();
-    }
-  });
-
-  let submitted = false;
-
-  function submitToGreenhouse() {
-    if (submitted || !userName || !userEmail) return;
-
-    const msgs = document.querySelectorAll(".msg");
-    let userMessages = [];
-    let fullSession = "";
-
-    msgs.forEach((m, i) => {
-      if (i === 0) return;
-      const bubble = m.querySelector(".msg-bubble");
-      if (!bubble) return;
-      const text = (bubble.innerText || bubble.textContent).trim();
-      const label = m.querySelector(".msg-label")?.textContent || "";
-      if (m.classList.contains("msg-user")) userMessages.push(text);
-      fullSession += label.toUpperCase() + ":\n" + text + "\n\n";
-    });
-
-    const whatDo   = userMessages[0] || "";
-    const whatNeed = userMessages[1] || "";
-
-    // Show the share prompt banner
-    showSharePrompt(whatDo, whatNeed, fullSession);
-    submitted = true;
-  }
-
-  function buildProfileText(whatDo, whatNeed, fullSession) {
-    return [
+  // ── SHARE PROMPT ──
+  function buildProfileText() {
+    const lines = [
       "═══════════════════════════════════════",
       "  U DISCOVERY PROFILE",
       "  Urban Design Outreach — The Greenhouse",
@@ -1288,32 +1334,48 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
       "───────────────────────────────────────",
       userEmail,
       "",
-      "WHAT THEY DO",
+      "LOCATION",
       "───────────────────────────────────────",
-      whatDo,
+      userLocation,
       "",
-      "WHAT THEY NEED",
+      "ROOT WORK DISCOVERY",
       "───────────────────────────────────────",
-      whatNeed,
-      "",
-      "FULL SESSION",
-      "───────────────────────────────────────",
-      fullSession,
-      "",
+    ];
+    if (formAnswers.q1) lines.push(`What Makes Me Come Alive:\n${formAnswers.q1}`, "");
+    if (formAnswers.q2) lines.push(`What I Was Built to Do:\n${formAnswers.q2}`, "");
+    if (formAnswers.q3) lines.push(`What the Village Is Hungry For:\n${formAnswers.q3}`, "");
+    if (formAnswers.q4) lines.push(`What Can Grow from Me:\n${formAnswers.q4}`, "");
+    if (needsAnswer) {
+      lines.push("WHAT THEY NEED", "───────────────────────────────────────", needsAnswer, "");
+    }
+    if (profileResponse) {
+      lines.push("GREENHOUSE PROFILE RESPONSE", "───────────────────────────────────────");
+      const div = document.createElement("div");
+      div.innerHTML = profileResponse;
+      lines.push((div.innerText || div.textContent).trim(), "");
+    }
+    if (needsResponse) {
+      lines.push("VILLAGE RESOURCES", "───────────────────────────────────────");
+      const div = document.createElement("div");
+      div.innerHTML = needsResponse;
+      lines.push((div.innerText || div.textContent).trim(), "");
+    }
+    lines.push(
       "═══════════════════════════════════════",
       "  urbandesignoutreach.com",
+      "  grow@urbandesignoutreach.com",
       "  \"We animate the spaces between people.\"",
       "═══════════════════════════════════════"
-    ].join("\n");
+    );
+    return lines.join("\n");
   }
 
-  function showSharePrompt(whatDo, whatNeed, fullSession) {
+  function showSharePrompt() {
     const existing = document.getElementById("sharePrompt");
     if (existing) existing.remove();
 
-    const profileText = buildProfileText(whatDo, whatNeed, fullSession);
+    const profileText = buildProfileText();
     const subject = "New Greenhouse Profile — " + userName;
-
     const banner = document.createElement("div");
     banner.id = "sharePrompt";
     banner.innerHTML = `
@@ -1322,13 +1384,13 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
           <div class="sp-icon">✦</div>
           <div>
             <div class="sp-title">Your Roots Have Been Revealed</div>
-            <div class="sp-sub">Your complete profile is in the box below. Copy it and email to grow@urbandesignoutreach.com — or use the button to open your mail app. <strong style="color:var(--navy);">The box contains your full uncut profile.</strong></div>
+            <div class="sp-sub">Your complete profile is ready below. Copy it and email to grow@urbandesignoutreach.com — or use the button to open your mail app directly.</div>
           </div>
         </div>
         <div class="sp-actions">
           <button class="sp-btn-primary" onclick="copyAndMail()">Copy Profile + Open Mail</button>
           <button class="sp-btn-copy" onclick="copyProfileOnly()">Copy Text Only</button>
-          <button class="sp-btn-secondary" onclick="document.getElementById('sharePrompt').remove()">Maybe Later</button>
+          <button class="sp-btn-secondary" onclick="this.closest('#sharePrompt').remove()">Maybe Later</button>
         </div>
       </div>
       <div class="sp-profile-box">
@@ -1340,35 +1402,29 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
         <pre id="profileTextBox" class="sp-profile-text">${profileText}</pre>
       </div>`;
 
-    const convWrap = document.querySelector(".conversation-wrap");
-    convWrap.insertAdjacentElement("afterend", banner);
-    setTimeout(() => banner.scrollIntoView({ behavior:"smooth", block:"center" }), 200);
-
-    // Store for use by buttons
     banner.dataset.profileText = profileText;
     banner.dataset.subject = subject;
+
+    // Insert after action row
+    const actionRow = document.getElementById("actionRow");
+    actionRow.insertAdjacentElement("afterend", banner);
+    setTimeout(() => banner.scrollIntoView({ behavior: "smooth", block: "center" }), 200);
   }
 
   function copyProfileOnly() {
     const banner = document.getElementById("sharePrompt");
-    const text = banner.dataset.profileText;
-    copyText(text, "sp-btn-copy", "Copied ✓", "Copy Text Only");
+    copyText(banner.dataset.profileText, "sp-btn-copy", "Copied ✓", "Copy Text Only");
   }
 
   function copyAndMail() {
     const banner = document.getElementById("sharePrompt");
     const text = banner.dataset.profileText;
     const subject = banner.dataset.subject;
-
-    // Copy to clipboard first
     copyText(text, "sp-btn-primary", "Copied! Opening mail...", "Copy Profile + Open Mail");
-
-    // Then try mailto
     setTimeout(() => {
-      const mailtoLink = "mailto:grow@urbandesignoutreach.com"
+      window.location.href = "mailto:grow@urbandesignoutreach.com"
         + "?subject=" + encodeURIComponent(subject)
-        + "&body=" + encodeURIComponent(text.substring(0, 1800)); // mailto has browser URL limits — full text is in the visible box above
-      window.location.href = mailtoLink;
+        + "&body=" + encodeURIComponent(text.substring(0, 1800));
     }, 600);
   }
 
@@ -1383,18 +1439,6 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
     }
   }
 
-  function selectAllProfile() {
-    const box = document.getElementById("profileTextBox");
-    if (!box) return;
-    const range = document.createRange();
-    range.selectNodeContents(box);
-    const sel = window.getSelection();
-    sel.removeAllRanges();
-    sel.addRange(range);
-    // Also try to copy
-    try { document.execCommand("copy"); } catch(e) {}
-  }
-
   function fallbackCopyText(text, btn, successMsg, originalMsg) {
     const ta = document.createElement("textarea");
     ta.value = text;
@@ -1404,28 +1448,111 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
     try {
       document.execCommand("copy");
       if (btn) { btn.textContent = successMsg; setTimeout(() => btn.textContent = originalMsg, 2500); }
-    } catch(e) {
-      // Select the visible text box so user can manually copy
-      const box = document.getElementById("profileTextBox");
-      if (box) {
-        const range = document.createRange();
-        range.selectNodeContents(box);
-        const sel = window.getSelection();
-        sel.removeAllRanges();
-        sel.addRange(range);
-      }
-    }
+    } catch(e) { selectAllProfile(); }
     document.body.removeChild(ta);
   }
 
-  // Add fadeOut keyframe
-  const style = document.createElement("style");
-  style.textContent = "@keyframes fadeOut { from { opacity:1; } to { opacity:0; } }";
-  document.head.appendChild(style);
+  function selectAllProfile() {
+    const box = document.getElementById("profileTextBox");
+    if (!box) return;
+    const range = document.createRange();
+    range.selectNodeContents(box);
+    const sel = window.getSelection();
+    sel.removeAllRanges();
+    sel.addRange(range);
+    try { document.execCommand("copy"); } catch(e) {}
+  }
+
+  // ── RESULT MODAL ──
+  function openResultModal() {
+    const hasResponse = document.getElementById("responseWrap").classList.contains("active");
+    if (!hasResponse) {
+      alert("Fill in your Root Work Discovery and plant it first — then reveal your roots.");
+      return;
+    }
+
+    document.getElementById("resultDate").textContent = new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" });
+
+    const rc = document.getElementById("resultContent");
+    rc.innerHTML = "";
+
+    const sections = [];
+
+    // Root Work answers
+    const rwAnswers = [
+      { label: "What Makes U Come Alive", val: formAnswers.q1 },
+      { label: "What U Were Built to Do", val: formAnswers.q2 },
+      { label: "What the Village Is Hungry For", val: formAnswers.q3 },
+      { label: "What Can Grow from U", val: formAnswers.q4 },
+    ].filter(s => s.val);
+
+    if (rwAnswers.length) {
+      const sec = document.createElement("div");
+      sec.className = "rc-section";
+      let bodyHTML = rwAnswers.map(a =>
+        `<p style="margin-bottom:10px;"><span style="font-family:'Oswald',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--navy);font-weight:600;">${a.label}</span><br>${a.val}</p>`
+      ).join("");
+      sec.innerHTML = `<div class="rc-section-label">Root Work Discovery</div><div class="rc-section-body">${bodyHTML}</div>`;
+      rc.appendChild(sec);
+    }
+
+    // AI Profile response
+    if (profileResponse) {
+      const sec = document.createElement("div");
+      sec.className = "rc-section";
+      sec.innerHTML = `<div class="rc-section-label">U Possibilities — Four Tiers</div><div class="rc-section-body">${cleanMarkdown(profileResponse)}</div>`;
+      rc.appendChild(sec);
+    }
+
+    // What U Need
+    if (needsAnswer) {
+      const sec = document.createElement("div");
+      sec.className = "rc-section";
+      sec.innerHTML = `<div class="rc-section-label orange-label">What U Need</div><div class="rc-section-body orange-border"><p style="font-family:'Rokkitt',serif;font-size:15px;line-height:1.75;color:#334;margin:0;">${needsAnswer}</p></div>`;
+      rc.appendChild(sec);
+    }
+
+    // Needs response
+    if (needsResponse) {
+      const sec = document.createElement("div");
+      sec.className = "rc-section";
+      // Convert list to 2-col grid
+      const tempDiv = document.createElement("div");
+      tempDiv.innerHTML = cleanMarkdown(needsResponse);
+      const allLi = tempDiv.querySelectorAll("li");
+      let bodyHTML = cleanMarkdown(needsResponse);
+      if (allLi.length > 0) {
+        let grid = '<ul class="rc-two-col">';
+        allLi.forEach(li => { grid += `<li>${li.innerHTML}</li>`; });
+        grid += '</ul>';
+        bodyHTML = grid;
+      }
+      sec.innerHTML = `<div class="rc-section-label navy-label">The Greenhouse Says</div><div class="rc-section-body navy-border">${bodyHTML}</div>`;
+      rc.appendChild(sec);
+    }
+
+    document.getElementById("resultModal").classList.add("open");
+  }
+
+  function closeModal() {
+    document.getElementById("resultModal").classList.remove("open");
+  }
 
   document.getElementById("resultModal").addEventListener("click", function(e) {
     if (e.target === this) closeModal();
   });
+
+  function copyResultText() {
+    const text = buildProfileText();
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        const btn = document.getElementById("copyBtn");
+        btn.textContent = "Copied ✓";
+        btn.style.background = "#004d00";
+        setTimeout(() => { btn.textContent = "Copy Text"; btn.style.background = ""; }, 2500);
+      });
+    }
+  }
 
   function downloadCard() {
     const rcHeader = document.querySelector(".rc-header").innerHTML;
@@ -1433,119 +1560,46 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
     const date = document.getElementById("resultDate").textContent;
 
     const html = `<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
+<html lang="en"><head><meta charset="UTF-8">
 <title>U Discovery Profile — Urban Design Outreach</title>
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;500;600&family=Jura:wght@400;500;600&family=Rokkitt:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Oswald:wght@400;600&family=Jura:wght@400;600&family=Rokkitt:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --navy:#001984; --green:#008500; --orange:#ffa626; --brown:#824930;
-  }
+  :root { --navy:#001984; --green:#008500; --orange:#ffa626; --brown:#824930; }
   * { margin:0; padding:0; box-sizing:border-box; }
-  body {
-    background: white;
-    font-family: "Rokkitt", Georgia, serif;
-    color: #1a1a2e;
-    max-width: 780px;
-    margin: 0 auto;
-  }
-  .po-header {
-    background: var(--navy);
-    padding: 32px 40px;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-  }
-  .rc-header-text {}
-  .rc-header-title {
-    font-family: "Bebas Neue", sans-serif;
-    font-size: 36px; letter-spacing: 3px; color: white; line-height: 1;
-  }
-  .rc-header-sub {
-    font-family: "Jura", sans-serif; font-size: 10px;
-    letter-spacing: 3px; text-transform: uppercase;
-    color: rgba(255,255,255,0.45); margin-top: 4px;
-  }
-  .rc-header-date {
-    margin-left: auto; font-family: "Jura", sans-serif;
-    font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
-    color: var(--orange); text-align: right;
-  }
-  .po-body { padding: 36px 40px; background: white; }
-  .rc-section { margin-bottom: 28px; }
-  .rc-section-label {
-    font-family: "Oswald", sans-serif; font-size: 10px;
-    letter-spacing: 4px; text-transform: uppercase;
-    color: var(--green); margin-bottom: 12px;
-    display: flex; align-items: center; gap: 10px;
-  }
-  .rc-section-label::after {
-    content: ""; flex: 1; height: 1px; background: rgba(0,133,0,0.2);
-  }
-  .rc-section-body {
-    font-family: "Rokkitt", serif; font-size: 14.5px;
-    line-height: 1.78; color: #334;
-    background: #f9faf9; border-left: 3px solid var(--green);
-    padding: 16px 20px; border-radius: 0 4px 4px 0;
-  }
-  .rc-section-body.orange-border { border-left-color: var(--orange); background: #fffaf4; }
-  .rc-section-body.navy-border { border-left-color: var(--navy); background: #f5f7ff; }
-  .tier {
-    font-family: "Oswald", sans-serif; font-size: 10px;
-    letter-spacing: 3px; text-transform: uppercase;
-    font-weight: 600; margin: 14px 0 8px;
-  }
-  .tier-easy { color: var(--green); }
-  .tier-stretch { color: var(--orange); }
-  .tier-aspirational { color: var(--brown); }
-  ul { list-style: none; padding: 0; margin: 4px 0 12px; }
-  ul li {
-    padding: 5px 0 5px 20px; position: relative;
-    font-size: 14px; line-height: 1.65; color: #445;
-  }
-  ul li::before {
-    content: "→"; position: absolute; left: 0;
-    color: var(--green); font-size: 12px; top: 6px;
-  }
-  .rc-two-col {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 6px 28px; margin: 6px 0 12px;
-    padding: 0; list-style: none;
-  }
-  .rc-two-col li {
-    font-size: 13.5px; line-height: 1.55; color: #334;
-    padding: 4px 0 4px 18px; position: relative;
-  }
-  .rc-two-col li::before {
-    content: "•"; position: absolute; left: 0;
-    color: var(--orange); font-size: 15px; top: 2px;
-  }
-  strong { color: var(--navy); font-weight: 700; }
-  em { color: var(--green); font-style: italic; }
-  p { margin-bottom: 10px; font-size: 14px; line-height: 1.75; color: #334; }
-  .po-watermark {
-    margin: 0 40px 32px;
-    padding-top: 18px;
-    border-top: 1px solid #eaeaea;
-    text-align: center;
-    font-family: "Jura", sans-serif;
-    font-size: 9px; letter-spacing: 3px;
-    text-transform: uppercase; color: #bbc;
-  }
-  @media print {
-    body { max-width: 100%; }
-  }
-</style>
-</head>
+  body { background:white; font-family:"Rokkitt",Georgia,serif; color:#1a1a2e; max-width:780px; margin:0 auto; }
+  .po-header { background:var(--navy); padding:32px 40px; display:flex; align-items:center; gap:16px; }
+  .rc-header-title { font-family:"Bebas Neue",sans-serif; font-size:36px; letter-spacing:3px; color:white; line-height:1; }
+  .rc-header-sub { font-family:"Jura",sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.45); margin-top:4px; }
+  .rc-header-date { margin-left:auto; font-family:"Jura",sans-serif; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--orange); text-align:right; }
+  .po-body { padding:36px 40px; }
+  .rc-section { margin-bottom:28px; }
+  .rc-section-label { font-family:"Oswald",sans-serif; font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--green); margin-bottom:12px; display:flex; align-items:center; gap:10px; }
+  .rc-section-label::after { content:""; flex:1; height:1px; background:rgba(0,133,0,0.2); }
+  .rc-section-label.orange-label { color:var(--orange); }
+  .rc-section-label.orange-label::after { background:rgba(255,166,38,0.2); }
+  .rc-section-label.navy-label { color:var(--navy); }
+  .rc-section-label.navy-label::after { background:rgba(0,25,132,0.15); }
+  .rc-section-body { font-family:"Rokkitt",serif; font-size:14.5px; line-height:1.78; color:#334; background:#f9faf9; border-left:3px solid var(--green); padding:16px 20px; border-radius:0 4px 4px 0; }
+  .rc-section-body.orange-border { border-left-color:var(--orange); background:#fffaf4; }
+  .rc-section-body.navy-border { border-left-color:var(--navy); background:#f5f7ff; }
+  .tier { font-family:"Oswald",sans-serif; font-size:10px; letter-spacing:3px; text-transform:uppercase; font-weight:600; margin:14px 0 8px; }
+  .tier-easy { color:var(--green); } .tier-stretch { color:var(--orange); } .tier-aspirational { color:var(--brown); } .tier-human { color:var(--navy); }
+  ul { list-style:none; padding:0; margin:4px 0 12px; }
+  ul li { padding:5px 0 5px 20px; position:relative; font-size:14px; line-height:1.65; color:#445; }
+  ul li::before { content:"→"; position:absolute; left:0; color:var(--green); font-size:12px; top:6px; }
+  .rc-two-col { display:grid; grid-template-columns:1fr 1fr; gap:6px 28px; margin:6px 0 12px; padding:0; list-style:none; }
+  .rc-two-col li { font-size:13.5px; line-height:1.55; color:#334; padding:4px 0 4px 18px; position:relative; }
+  .rc-two-col li::before { content:"•"; position:absolute; left:0; color:var(--orange); font-size:15px; top:2px; }
+  strong { color:var(--navy); font-weight:700; } em { color:var(--green); font-style:italic; }
+  p { margin-bottom:10px; font-size:14px; line-height:1.75; color:#334; }
+  .po-watermark { margin:0 40px 32px; padding-top:18px; border-top:1px solid #eaeaea; text-align:center; font-family:"Jura",sans-serif; font-size:9px; letter-spacing:3px; text-transform:uppercase; color:#bbc; }
+</style></head>
 <body>
 <div class="po-header">${rcHeader}</div>
 <div class="po-body">${rcBody}</div>
 <div class="po-watermark">Urban Design Outreach &nbsp;|&nbsp; urbandesignoutreach.com &nbsp;|&nbsp; "We animate the spaces between people."</div>
-</body>
-</html>`;
+</body></html>`;
 
-    // Create blob and trigger download
     const blob = new Blob([html], { type: "text/html;charset=utf-8" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -1555,14 +1609,10 @@ TONE: Warm, direct, visionary. Use horticulture language lightly and naturally: 
     a.click();
     document.body.removeChild(a);
     setTimeout(() => URL.revokeObjectURL(url), 2000);
-
-    // Update button briefly
     const btn = document.querySelector(".rc-btn-print");
-    if (btn) {
-      btn.textContent = "Downloaded ✓";
-      setTimeout(() => btn.textContent = "Download Profile", 2500);
-    }
+    if (btn) { btn.textContent = "Downloaded ✓"; setTimeout(() => btn.textContent = "Download Profile", 2500); }
   }
 </script>
 </body>
 </html>
+v18 — root work form, location, disclaimer
