@@ -487,30 +487,18 @@ function scrollToGate(){
 /* ═══════════════════════════════════════════
    STRIPE CHECKOUT
 ═══════════════════════════════════════════ */
-async function startCheckout(){
-  const btn=document.getElementById('stripeBtn');
-  btn.disabled=true;
-  btn.textContent='Connecting to Stripe...';
-  try{
-    const resp=await fetch('/api/create-checkout-session',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        price:499,
-        product_name:'IP Kids Discovery Report',
-        success_url:window.location.origin+window.location.pathname+'?payment=success',
-        cancel_url:window.location.href
-      })
-    });
-    const data=await resp.json();
-    if(data.url){window.location.href=data.url;}
-    else throw new Error('No checkout URL returned');
-  }catch(err){
-    btn.disabled=false;
-    btn.textContent='Pay $4.99 & Unlock Now ▸';
-    showError('gateError','Could not connect to payment processor. Please try again or contact grow@urbandesignoutreach.com');
-    console.error(err);
-  }
+function startCheckout(){
+  // Stripe Payment Link — replace the URL below with your actual Stripe Payment Link.
+  // In your Stripe dashboard: Products → Payment Links → Create link for $4.99
+  // Set the "After payment" redirect to: https://udo-greenhouse.vercel.app/ip-kids.html?payment=success
+  const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/REPLACE_WITH_YOUR_LINK';
+
+  const successUrl = encodeURIComponent(
+    window.location.origin + window.location.pathname + '?payment=success'
+  );
+
+  // Append success redirect as a query param (Stripe Payment Links support ?success_url= or use dashboard setting)
+  window.location.href = STRIPE_PAYMENT_LINK;
 }
 
 /* ═══════════════════════════════════════════
