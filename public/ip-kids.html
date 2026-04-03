@@ -358,7 +358,7 @@ textarea{resize:vertical;min-height:120px;line-height:1.6;}
     <div>
       <div class="org-heading">Schools, Programs &amp; Organizations</div>
       <p class="org-desc">Licensing IP Kids for your youth program, school, or after-school organization? Community and institutional licenses are available starting at $99/month for unlimited use. White-label branding available.</p>
-      <a href="/cdn-cgi/l/email-protection#2245504d5562575040434c4647514b454c4d5756504743414a0c414d4f1d515740484741561f6b7202694b4651026e4b41474c514b4c45026b4c53574b505b" class="org-link">Contact us about licensing →</a>
+      <a href="/cdn-cgi/l/email-protection#9ff8edf0e8dfeaedfdfef1fbfaecf6f8f1f0eaebedfafefcf7b1fcf0f2a0eceafdf5fafceba2d6cfbfd4f6fbecbfd3f6fcfaf1ecf6f1f8bfd6f1eeeaf6ede6" class="org-link">Contact us about licensing →</a>
     </div>
   </div>
 
@@ -459,7 +459,7 @@ textarea{resize:vertical;min-height:120px;line-height:1.6;}
   </div>
 </div>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* ═══════════════════════════════════════════
    GLOBALS
 ═══════════════════════════════════════════ */
@@ -762,53 +762,121 @@ function drawSuperpowerCard(){
   const line1=spWords.slice(0,mid).join(' ');
   const line2=spWords.slice(mid).join(' ');
   const spHTML=line2
-    ? `<span style="color:#fff;">${line1}</span> <span style="color:#ffa626;">${line2}</span>`
-    : `<span style="color:#ffa626;">${line1}</span>`;
+    ? `<span style="color:#001984;">${line1}</span> <span style="color:#ffa626;">${line2}</span>`
+    : `<span style="color:#001984;">${line1}</span>`;
+
+  // Generate 6 random skills based on superpower theme
+  const skillSets = {
+    'creative': [
+      {icon: '🎨', text: 'CREATIVE<br>VISION'},
+      {icon: '💡', text: 'IDEA<br>GENERATOR'},
+      {icon: '🌟', text: 'STORY<br>BUILDER'},
+      {icon: '🎭', text: 'EXPRESSION<br>MASTER'},
+      {icon: '🔮', text: 'FUTURE<br>THINKER'},
+      {icon: '✨', text: 'MAGIC<br>MAKER'}
+    ],
+    'athletic': [
+      {icon: '⚡', text: 'SPEED<br>DEMON'},
+      {icon: '🎯', text: 'PRECISION<br>STRIKER'},
+      {icon: '💪', text: 'POWER<br>PLAYER'},
+      {icon: '🏃', text: 'ENDURANCE<br>CHAMPION'},
+      {icon: '🤸', text: 'AGILITY<br>MASTER'},
+      {icon: '🎖️', text: 'TEAM<br>LEADER'}
+    ],
+    'social': [
+      {icon: '🤝', text: 'TEAM<br>CONNECTOR'},
+      {icon: '🗣️', text: 'VOICE<br>AMPLIFIER'},
+      {icon: '❤️', text: 'EMPATHY<br>EXPERT'},
+      {icon: '🌍', text: 'CULTURE<br>BRIDGE'},
+      {icon: '👥', text: 'CROWD<br>UNITER'},
+      {icon: '🎭', text: 'MOOD<br>READER'}
+    ],
+    'tech': [
+      {icon: '💻', text: 'CODE<br>WIZARD'},
+      {icon: '🔧', text: 'PROBLEM<br>SOLVER'},
+      {icon: '🚀', text: 'INNOVATION<br>DRIVER'},
+      {icon: '🎮', text: 'LOGIC<br>MASTER'},
+      {icon: '⚙️', text: 'SYSTEM<br>BUILDER'},
+      {icon: '🔬', text: 'DATA<br>DETECTIVE'}
+    ],
+    'leadership': [
+      {icon: '👑', text: 'NATURAL<br>LEADER'},
+      {icon: '🎯', text: 'GOAL<br>CRUSHER'},
+      {icon: '📈', text: 'GROWTH<br>HACKER'},
+      {icon: '🛡️', text: 'TEAM<br>PROTECTOR'},
+      {icon: '🔥', text: 'MOTIVATION<br>SPARK'},
+      {icon: '🌟', text: 'VISION<br>CASTER'}
+    ]
+  };
+
+  // Pick skill set based on interests or random
+  const interests = gResultData?.interests?.toLowerCase() || '';
+  let selectedSet = 'social'; // default
+  if (interests.includes('art') || interests.includes('music') || interests.includes('draw')) selectedSet = 'creative';
+  else if (interests.includes('sport') || interests.includes('soccer') || interests.includes('run')) selectedSet = 'athletic';
+  else if (interests.includes('computer') || interests.includes('game') || interests.includes('tech')) selectedSet = 'tech';
+  else if (interests.includes('leader') || interests.includes('help') || interests.includes('organize')) selectedSet = 'leadership';
+
+  const skills = skillSets[selectedSet];
+  const skillsHTML = skills.map(skill => 
+    `<div style="background:rgba(255,166,38,0.1);border:1px solid rgba(255,166,38,0.3);border-radius:4px;padding:3px 5px;text-align:center;">
+      <div style="font-size:10px;margin-bottom:1px;">${skill.icon}</div>
+      <div style="font-family:'Jura',monospace;font-size:5.5px;color:#001984;letter-spacing:0.1em;line-height:1.2;font-weight:600;">${skill.text}</div>
+    </div>`
+  ).join('');
 
   wrap.innerHTML=`
     <div id="spCard" style="
       width:300px;height:533px;border-radius:20px;overflow:hidden;
-      background:#001984;position:relative;
-      box-shadow:0 0 0 4px #ffa626,0 0 0 8px #001984,0 0 0 12px #ffa626;
+      background:#ffffff;position:relative;
+      box-shadow:0 0 0 4px #001984,0 0 0 8px #ffffff,0 0 0 12px #001984;
       font-family:'Bebas Neue',sans-serif;
     ">
-      <div style="position:absolute;width:280px;height:280px;border-radius:50%;background:#ffa626;opacity:.08;top:-80px;right:-80px;"></div>
-      <div style="position:absolute;width:200px;height:200px;border-radius:50%;background:#008500;opacity:.1;bottom:-60px;left:-60px;"></div>
-      <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(45deg,transparent,transparent 18px,rgba(255,255,255,0.025) 18px,rgba(255,255,255,0.025) 19px);"></div>
-      <div style="position:absolute;top:42px;left:10px;width:16px;height:16px;border-top:2px solid rgba(255,166,38,0.45);border-left:2px solid rgba(255,166,38,0.45);z-index:3;"></div>
-      <div style="position:absolute;top:42px;right:10px;width:16px;height:16px;border-top:2px solid rgba(255,166,38,0.45);border-right:2px solid rgba(255,166,38,0.45);z-index:3;"></div>
-      <div style="position:absolute;bottom:10px;left:10px;width:16px;height:16px;border-bottom:2px solid rgba(255,166,38,0.45);border-left:2px solid rgba(255,166,38,0.45);z-index:3;"></div>
-      <div style="position:absolute;bottom:10px;right:10px;width:16px;height:16px;border-bottom:2px solid rgba(255,166,38,0.45);border-right:2px solid rgba(255,166,38,0.45);z-index:3;"></div>
+      <!-- IP Kids Pattern Watermark -->
+      <div style="position:absolute;inset:0;opacity:0.06;background-image:repeating-linear-gradient(45deg,transparent,transparent 15px,#001984 15px,#001984 16px),repeating-linear-gradient(-45deg,transparent,transparent 15px,#001984 15px,#001984 16px);z-index:1;"></div>
+      <div style="position:absolute;top:20px;left:20px;right:20px;opacity:0.04;text-align:center;font-family:'Bebas Neue',sans-serif;font-size:18px;color:#001984;letter-spacing:0.2em;z-index:1;">IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS<br>IP KIDS IP KIDS IP KIDS</div>
+      
+      <div style="position:absolute;top:42px;left:10px;width:16px;height:16px;border-top:2px solid #001984;border-left:2px solid #001984;z-index:3;"></div>
+      <div style="position:absolute;top:42px;right:10px;width:16px;height:16px;border-top:2px solid #001984;border-right:2px solid #001984;z-index:3;"></div>
+      <div style="position:absolute;bottom:10px;left:10px;width:16px;height:16px;border-bottom:2px solid #001984;border-left:2px solid #001984;z-index:3;"></div>
+      <div style="position:absolute;bottom:10px;right:10px;width:16px;height:16px;border-bottom:2px solid #001984;border-right:2px solid #001984;z-index:3;"></div>
+      
       <div style="position:relative;z-index:2;height:100%;display:flex;flex-direction:column;">
-        <div style="background:#ffa626;padding:9px 16px 8px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:19px;color:#001984;letter-spacing:.08em;">IP KIDS</span>
-          <span style="font-family:'Jura',monospace;font-size:8px;color:#001984;letter-spacing:.14em;text-align:right;line-height:1.4;text-transform:uppercase;">Intellectual<br>Property Kids</span>
+        <div style="background:#001984;padding:9px 16px 8px;display:flex;align-items:center;justify-content:space-between;">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:19px;color:#ffa626;letter-spacing:.08em;">IP KIDS</span>
+          <span style="font-family:'Jura',monospace;font-size:8px;color:#ffffff;letter-spacing:.14em;text-align:right;line-height:1.4;text-transform:uppercase;">Intellectual<br>Property Kids</span>
         </div>
-        <div style="background:#001060;padding:5px 16px;font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.2em;color:rgba(255,166,38,0.7);text-transform:uppercase;text-align:center;">
+        <div style="background:#ffa626;padding:5px 16px;font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.2em;color:#001984;text-transform:uppercase;text-align:center;">
           ✦ &nbsp; IP Academy Superpower Card &nbsp; ✦
         </div>
         <div style="padding:18px 16px 10px;text-align:center;">
           <span style="font-size:52px;line-height:1;display:block;">${gEmoji}</span>
         </div>
         <div style="padding:0 16px 4px;text-align:center;">
-          <div style="font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.22em;color:rgba(255,166,38,0.65);text-transform:uppercase;margin-bottom:4px;">Superpower Identified</div>
+          <div style="font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.22em;color:#001984;text-transform:uppercase;margin-bottom:4px;opacity:0.7;">Superpower Identified</div>
           <div style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;line-height:1.05;">${spHTML}</div>
         </div>
-        <div style="height:1px;margin:8px 16px;background:rgba(255,166,38,0.25);"></div>
+        <div style="height:1px;margin:8px 16px;background:#001984;opacity:0.2;"></div>
         <div style="padding:0 16px 2px;text-align:center;">
-          <div style="font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.2em;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:2px;">IP Kid</div>
-          <div style="font-family:'Oswald',sans-serif;font-size:18px;color:#fff;letter-spacing:.08em;font-weight:600;">${gName.toUpperCase()} &nbsp;·&nbsp; Age ${gAge}</div>
+          <div style="font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.2em;color:#001984;text-transform:uppercase;margin-bottom:2px;opacity:0.6;">IP Kid</div>
+          <div style="font-family:'Oswald',sans-serif;font-size:18px;color:#001984;letter-spacing:.08em;font-weight:600;">${gName.toUpperCase()} &nbsp;·&nbsp; Age ${gAge}</div>
         </div>
-        <div style="padding:8px 18px 0;font-family:'Rokkitt',serif;font-size:10.5px;color:rgba(255,255,255,0.84);line-height:1.65;text-align:center;flex:1;">
+        <div style="padding:8px 16px 0;font-family:'Rokkitt',serif;font-size:14px;color:#001984;line-height:1.7;text-align:center;">
           ${gDescription}
         </div>
-        <div style="height:1px;margin:8px 16px 0;background:rgba(255,166,38,0.2);"></div>
+        <div style="padding:8px 16px 0;flex:1;">
+          <div style="font-family:'Jura',monospace;font-size:7.5px;letter-spacing:.2em;color:#001984;text-transform:uppercase;text-align:center;margin-bottom:6px;opacity:0.7;">✦ Skills Unlocked</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px 8px;">
+            ${skillsHTML}
+          </div>
+        </div>
+        <div style="height:1px;margin:8px 16px 0;background:#001984;opacity:0.2;"></div>
         <div style="padding:8px 16px 4px;display:flex;align-items:center;justify-content:space-between;">
-          <span style="font-family:'Bebas Neue',sans-serif;font-size:12px;color:#ffa626;letter-spacing:.06em;">Urban Design Outreach</span>
-          <span style="font-family:'Jura',monospace;font-size:7.5px;color:rgba(255,166,38,0.5);letter-spacing:.1em;">${serial}</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:12px;color:#001984;letter-spacing:.06em;">Urban Design Outreach</span>
+          <span style="font-family:'Jura',monospace;font-size:7.5px;color:#001984;letter-spacing:.1em;opacity:0.6;">${serial}</span>
         </div>
         <div style="text-align:center;padding:0 0 10px;">
-          <span style="font-family:'Jura',monospace;font-size:7.5px;color:rgba(255,255,255,0.38);letter-spacing:.1em;">urbandesignoutreach.com</span>
+          <span style="font-family:'Jura',monospace;font-size:7.5px;color:#001984;letter-spacing:.1em;opacity:0.5;">urbandesignoutreach.com</span>
         </div>
       </div>
     </div>`;
@@ -958,9 +1026,4 @@ function restartForm(){
   ['kidName','kidAge','kidInterests'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});
   document.getElementById('submitBtn').disabled=false;
   gName='';gAge='';gSuperpower='';gEmoji='';gDescription='';gCelebration='';gPowers=[];gResultData=null;
-  document.getElementById('formSection').style.display='block';
-  window.scrollTo({top:0,behavior:'smooth'});
-}
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-</body>
-</html>
+  document.getElementById('formSec
